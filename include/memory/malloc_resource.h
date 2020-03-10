@@ -10,7 +10,7 @@ namespace kab
 	struct malloc_resource 
 	{
 		// If the memory fails to allocate, the byte span will have a null pointer
-		byte_span allocate(size_t byte_size) noexcept 
+		[[nodiscard]] byte_span allocate(size_t byte_size) noexcept
 		{ 
 			return { static_cast<std::byte*>(std::malloc(byte_size)), byte_size }; 
 		}

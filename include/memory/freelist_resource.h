@@ -16,8 +16,8 @@ namespace kab
 	{
 		static_assert(BlockSize >= sizeof(void*), "Come on, give me at least something to work with");
 
-		InnerResource& access_inner() & noexcept { return static_cast<InnerResource&>(*this); }
-		InnerResource&& access_inner() && noexcept { return static_cast<InnerResource&&>(*this); }
+		[[nodiscard]] InnerResource& access_inner() & noexcept { return static_cast<InnerResource&>(*this); }
+		[[nodiscard]] InnerResource&& access_inner() && noexcept { return static_cast<InnerResource&&>(*this); }
 
 		struct node 
 		{
@@ -50,7 +50,7 @@ namespace kab
 		}
 
 		// If the memory fails to allocate, the behavior depends on the inner resource
-		byte_span allocate(size_t byte_size)
+		[[nodiscard]] byte_span allocate(size_t byte_size)
 		{
 			if (byte_size <= BlockSize)
 			{
@@ -74,7 +74,7 @@ namespace kab
 			}
 		}
 
-		byte_span over_allocate(size_t byte_size)
+		[[nodiscard]] byte_span over_allocate(size_t byte_size)
 		{
 			if (byte_size <= BlockSize)
 			{
@@ -121,7 +121,7 @@ namespace kab
 			}
 		}
 
-		constexpr bool operator==(freelist_resource const& rhs) const noexcept
+		[[nodiscard]] constexpr bool operator==(freelist_resource const& rhs) const noexcept
 		{
 			if constexpr (std::is_empty_v<InnerResource>)
 			{
