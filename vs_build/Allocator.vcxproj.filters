@@ -13,5 +13,31 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\memory">
+      <UniqueIdentifier>{a1ffa559-defd-4bf4-a1ec-3dd4b9ba390e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\container">
+      <UniqueIdentifier>{8287d224-abb7-4f93-a8bf-08a87b9c2179}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\container\vector.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\memory\allocator.h">
+      <Filter>Resource Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\memory\byte_span.h">
+      <Filter>Resource Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\memory\freelist_resource.h">
+      <Filter>Resource Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\memory\malloc_resource.h">
+      <Filter>Resource Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\memory\resource_reference.h">
+      <Filter>Resource Files\memory</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
