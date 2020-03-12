@@ -28,6 +28,11 @@ namespace kab
 
 	public:
 		constexpr freelist_resource() = default;
+		freelist_resource(InnerResource r)
+			: InnerResource(std::move(r))
+		{
+
+		}
 		freelist_resource(freelist_resource && rhs) noexcept
 			: InnerResource(std::move(rhs).access_inner())
 			, free_head(std::exchange(rhs.free_head, nullptr))
