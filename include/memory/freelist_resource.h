@@ -116,6 +116,7 @@ namespace kab
 		}
 
 		// Frees the entire freelist
+		// Blocks acquired from an allocation function still need to be passed to 'deallocate' - this won't magically collect all the garbage
 		void clear() noexcept
 		{
 			while (free_head != nullptr)
