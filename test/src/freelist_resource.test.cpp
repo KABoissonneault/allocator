@@ -111,5 +111,28 @@ TEST_CASE("Freelist Small Alloc", "[memory]")
 		freelist.deallocate(freelist.allocate(BlockSize));
 	}
 
+	REQUIRE(tester.get_current_alloc() == 0); // test that the destructor cleans the freelist
+}
+
+TEST_CASE("Freelist Big Alloc", "[memory]")
+{
+	test_resource tester;
+
+	{
+		freelist_resource freelist(tester);
+
+		constexpr size_t BigAlloc = BlockSize * 2;
+		const kab::byte_span first_alloc = freelist.allocate(BigAlloc);
+
+		REQUIRE(first_alloc.size == BigAlloc); // 'allocate' always returns the requested size
+		REQUIRE(tester.get_last_alloc() == BigAlloc); // freelist has no choice but to rely on the inner allocator for bigger allocs
+
+		freelist.deallocate(first_alloc);
+
+		REQUIRE(tester.get_current_alloc() == 0); // freelist has no choice but to deallocate this block
+
+		freelist.deallocate(freelist.allocate(BlockSize));
+	}
+
 	REQUIRE(tester.get_current_alloc() == 0);
 }
