@@ -70,7 +70,7 @@ namespace kab
 					// Just return the head of the freelist
 					node* const head = free_head;
 					free_head = head->next;
-					return { reinterpret_cast<std::byte*>(head), byte_size };
+					return { reinterpret_cast<byte*>(head), byte_size };
 				}
 			}
 			else // we don't handle blocks over our block size
@@ -92,7 +92,7 @@ namespace kab
 					// Just return the head of the freelist
 					node* const head = free_head;
 					free_head = head->next;
-					return { reinterpret_cast<std::byte*>(head), BlockSize };
+					return { reinterpret_cast<byte*>(head), BlockSize };
 				}
 			}
 			else
@@ -123,7 +123,7 @@ namespace kab
 			{
 				node* const head = free_head;
 				free_head = head->next;
-				access_inner().deallocate({ reinterpret_cast<std::byte*>(head), BlockSize });
+				access_inner().deallocate({ reinterpret_cast<byte*>(head), BlockSize });
 			}
 		}
 

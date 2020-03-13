@@ -125,8 +125,11 @@
   <ItemGroup>
     <ClCompile Include="..\src\freelist_resource.test.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\memory\new_resource.test.cpp" />
+    <ClCompile Include="..\src\new.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\new.h" />
     <ClInclude Include="..\src\test_resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

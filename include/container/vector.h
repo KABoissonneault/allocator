@@ -35,7 +35,7 @@ namespace kab
 
 		void free_storage()
 		{
-			access_alloc().deallocate({ reinterpret_cast<std::byte*>(m_data), m_byte_capacity });
+			access_alloc().deallocate({ reinterpret_cast<byte*>(m_data), m_byte_capacity });
 		}
 
 		void reallocate(size_t new_capacity)

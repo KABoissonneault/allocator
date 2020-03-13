@@ -7,7 +7,7 @@ namespace kab
 	namespace detail
 	{
 		template<size_t Alignment>
-		inline byte_span aligned_alloc(std::byte* current, size_t alloc_size, size_t max_alloc)
+		inline byte_span aligned_alloc(byte* current, size_t alloc_size, size_t max_alloc)
 		{
 			size_t const remainder = current % Alignment;
 			if (remainder == 0)
@@ -26,7 +26,7 @@ namespace kab
 		template<typename Alignment=alignof(std::max_align_t)>
 		struct default_align_helper
 		{
-			byte_span operator()(std::byte* current, size_t alloc_size, size_t max_alloc)
+			byte_span operator()(byte* current, size_t alloc_size, size_t max_alloc)
 			{
 				if (alloc_size >= Alignment)
 				{
@@ -42,7 +42,7 @@ namespace kab
 		template<>
 		struct default_align_helper<1>
 		{
-			byte_span operator()(std::byte* current, size_t alloc_size, size_t max_alloc)
+			byte_span operator()(byte* current, size_t alloc_size, size_t max_alloc)
 			{
 				return { current, alloc_size };
 			}
@@ -52,10 +52,10 @@ namespace kab
 	template<size_t Size>
 	class array_resource
 	{
-		std::byte m_buffer[Size];
-		std::byte* m_head = m_buffer;
+		byte m_buffer[Size];
+		byte* m_head = m_buffer;
 				
-		static std::byte* align_up(std::byte* current, size_t alloc_size, size_t max_alloc)
+		static byte* align_up(byte* current, size_t alloc_size, size_t max_alloc)
 		{
 			if (alloc_size >= alignof(std::max_align_t))
 			{
@@ -77,7 +77,7 @@ namespace kab
 
 		[[nodiscard]] byte_span allocate(size_t n)
 		{
-			std::byte* const current = m_buffer + m_allocated;
+			byte* const current = m_buffer + m_allocated;
 			size_t const max_alloc = max_alloc();
 			
 			byte_span const s = default_align_helper<>(current, n, max_alloc);

@@ -12,7 +12,7 @@ namespace kab
 		// If the memory fails to allocate, the byte span will have a null pointer
 		[[nodiscard]] byte_span allocate(size_t byte_size) noexcept
 		{ 
-			return { static_cast<std::byte*>(std::malloc(byte_size)), byte_size }; 
+			return { static_cast<byte*>(std::malloc(byte_size)), byte_size }; 
 		}
 		// For malloc_resource, the size of 'bytes' can have any value. 
 		void deallocate(byte_span bytes) noexcept 

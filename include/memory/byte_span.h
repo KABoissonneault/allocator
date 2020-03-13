@@ -1,16 +1,16 @@
 #pragma once
 
-#include <cstddef>
+#include "memory/memory_common.h"
 
 namespace kab
 {
 	struct byte_span 
 	{
-		std::byte* data;
+		byte* data;
 		size_t size;
 	};
 
-	[[nodiscard]] inline std::byte* data(byte_span span) noexcept
+	[[nodiscard]] inline byte* data(byte_span span) noexcept
 	{
 		return span.data;
 	}
@@ -20,12 +20,12 @@ namespace kab
 		return span.size;
 	}
 
-	[[nodiscard]] inline std::byte* begin(byte_span span) noexcept
+	[[nodiscard]] inline byte* begin(byte_span span) noexcept
 	{
 		return span.data;
 	}
 
-	[[nodiscard]] inline std::byte* end(byte_span span) noexcept
+	[[nodiscard]] inline byte* end(byte_span span) noexcept
 	{
 		return span.data + span.size;
 	}

@@ -18,7 +18,7 @@ namespace kab
 		{
 			header* next;
 			size_t size;
-			std::byte data[1]; // this is actually a FAM - we use this to get the address of the actual buffer
+			byte data[1]; // this is actually a FAM - we use this to get the address of the actual buffer
 		};
 
 		header* head = nullptr;

@@ -21,7 +21,7 @@ public:
 		m_current_alloc += n;
 		m_total_alloc += n;
 		void* const ptr = std::malloc(n);
-		return { static_cast<std::byte*>(ptr), n };
+		return { static_cast<byte*>(ptr), n };
 	}
 
 	void deallocate(kab::byte_span s)
