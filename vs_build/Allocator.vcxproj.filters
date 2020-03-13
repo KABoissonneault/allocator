@@ -39,5 +39,11 @@
     <ClInclude Include="..\include\memory\resource_reference.h">
       <Filter>Resource Files\memory</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\memory\monotonic_resource.h">
+      <Filter>Resource Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\memory\array_resource.h">
+      <Filter>Resource Files\memory</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
