@@ -18,27 +18,28 @@ TEST_CASE("Freelist BlockSize Alloc", "[memory]")
 		// Expect no allocations so far
 		REQUIRE(tester.get_total_alloc() == 0);
 
-		const kab::byte_span first_alloc = freelist.allocate(BlockSize);
+		const kab::byte_span first_alloc = freelist.allocate(BlockSize, kab::max_align_v);
 
 		REQUIRE(first_alloc.size == BlockSize); // 'allocate' always returns the requested size
 		REQUIRE(tester.get_last_alloc() == BlockSize); // freelist only allocates in chunks of "BlockSize"
+		REQUIRE(static_cast<kab::align_t>(tester.get_last_align()) >= kab::max_align_v); // alignment needs to be respected
 		REQUIRE(tester.get_current_alloc() == BlockSize);
 
-		freelist.deallocate(first_alloc);
+		freelist.deallocate(first_alloc, kab::max_align_v);
 
 		REQUIRE(tester.get_current_alloc() == BlockSize); // freelist never frees chunks that fit the block size
 
-		const kab::byte_span second_alloc = freelist.allocate(BlockSize);
+		const kab::byte_span second_alloc = freelist.allocate(BlockSize, kab::max_align_v);
 
 		REQUIRE(tester.get_current_alloc() == BlockSize); // expect no new allocations: we have to recover the last deallocated block
 		REQUIRE(second_alloc.data == first_alloc.data); // expect to get back the same block
 		
-		freelist.deallocate(second_alloc);
+		freelist.deallocate(second_alloc, kab::max_align_v);
 
 		freelist.clear();
 		REQUIRE(tester.get_current_alloc() == 0);
 
-		freelist.deallocate(freelist.allocate(BlockSize));
+		freelist.deallocate(freelist.allocate(BlockSize, kab::max_align_v), kab::max_align_v);
 	}
 
 	REQUIRE(tester.get_current_alloc() == 0);
@@ -56,7 +57,7 @@ TEST_CASE("Freelist Multi Alloc", "[memory]")
 		kab::byte_span allocations[AllocCount];
 		for (kab::byte_span& alloc : allocations)
 		{
-			alloc = freelist.allocate(BlockSize);
+			alloc = freelist.allocate(BlockSize, kab::max_align_v);
 		}
 
 		REQUIRE(tester.get_current_alloc() == AllocCount * BlockSize);
@@ -67,14 +68,14 @@ TEST_CASE("Freelist Multi Alloc", "[memory]")
 
 		for (kab::byte_span alloc : allocations)
 		{
-			freelist.deallocate(alloc);
+			freelist.deallocate(alloc, kab::max_align_v);
 		}
 
 		REQUIRE(tester.get_current_alloc() == AllocCount * BlockSize);
 
-		const kab::byte_span freelist_head = freelist.allocate(BlockSize);
+		const kab::byte_span freelist_head = freelist.allocate(BlockSize, kab::max_align_v);
 		REQUIRE(freelist_head.data == allocations[AllocCount - 1].data); // head of the freelist should be the last deallocation
-		freelist.deallocate(freelist_head);
+		freelist.deallocate(freelist_head, kab::max_align_v);
 	}
 
 	REQUIRE(tester.get_current_alloc() == 0);
@@ -88,27 +89,27 @@ TEST_CASE("Freelist Small Alloc", "[memory]")
 		freelist_resource freelist(tester);
 
 		constexpr size_t SmallAlloc = BlockSize / 2;
-		const kab::byte_span first_alloc = freelist.allocate(SmallAlloc);
+		const kab::byte_span first_alloc = freelist.allocate(SmallAlloc, kab::max_align_v);
 
 		REQUIRE(first_alloc.size == SmallAlloc); // 'allocate' always returns the requested size
 		REQUIRE(tester.get_last_alloc() == BlockSize); // freelist only allocates in chunks of "BlockSize"
 		REQUIRE(tester.get_current_alloc() == BlockSize);
 
-		freelist.deallocate(first_alloc);
+		freelist.deallocate(first_alloc, kab::max_align_v);
 
 		REQUIRE(tester.get_current_alloc() == BlockSize); // freelist never frees chunks that fit the block size
 
-		const kab::byte_span second_alloc = freelist.allocate(SmallAlloc);
+		const kab::byte_span second_alloc = freelist.allocate(SmallAlloc, kab::max_align_v);
 
 		REQUIRE(tester.get_current_alloc() == BlockSize); // expect no new allocations: we have to recover the last deallocated block
 		REQUIRE(second_alloc.data == first_alloc.data); // expect to get back the same block
 
-		freelist.deallocate(second_alloc);
+		freelist.deallocate(second_alloc, kab::max_align_v);
 
 		freelist.clear();
 		REQUIRE(tester.get_current_alloc() == 0);
 
-		freelist.deallocate(freelist.allocate(BlockSize));
+		freelist.deallocate(freelist.allocate(BlockSize, kab::max_align_v), kab::max_align_v);
 	}
 
 	REQUIRE(tester.get_current_alloc() == 0); // test that the destructor cleans the freelist
@@ -122,16 +123,16 @@ TEST_CASE("Freelist Big Alloc", "[memory]")
 		freelist_resource freelist(tester);
 
 		constexpr size_t BigAlloc = BlockSize * 2;
-		const kab::byte_span first_alloc = freelist.allocate(BigAlloc);
+		const kab::byte_span first_alloc = freelist.allocate(BigAlloc, kab::max_align_v);
 
 		REQUIRE(first_alloc.size == BigAlloc); // 'allocate' always returns the requested size
 		REQUIRE(tester.get_last_alloc() == BigAlloc); // freelist has no choice but to rely on the inner allocator for bigger allocs
 
-		freelist.deallocate(first_alloc);
+		freelist.deallocate(first_alloc, kab::max_align_v);
 
 		REQUIRE(tester.get_current_alloc() == 0); // freelist has no choice but to deallocate this block
 
-		freelist.deallocate(freelist.allocate(BlockSize));
+		freelist.deallocate(freelist.allocate(BlockSize, kab::max_align_v), kab::max_align_v);
 	}
 
 	REQUIRE(tester.get_current_alloc() == 0);

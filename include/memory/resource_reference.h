@@ -1,6 +1,7 @@
 #pragma once
 
 #include "memory/byte_span.h"
+#include "memory/resource.h"
 
 #include <type_traits>
 
@@ -18,19 +19,19 @@ namespace kab
 
 		}
 
-		[[nodiscard]] byte_span allocate(size_t n)
+		[[nodiscard]] byte_span allocate(size_t n, align_t alignment)
 		{
-			return m_resource->allocate(n);
+			return m_resource->allocate(n, alignment);
 		}
 
-		[[nodiscard]] byte_span over_allocate(size_t n)
+		[[nodiscard]] byte_span over_allocate(size_t n, align_t alignment)
 		{
-			return m_resource->over_allocate(n);
+			return m_resource->over_allocate(n, alignment);
 		}
 
-		void deallocate(byte_span s) noexcept
+		void deallocate(byte_span s, align_t alignment) noexcept
 		{
-			m_resource->deallocate(s);
+			m_resource->deallocate(s, alignment);
 		}
 
 		[[nodiscard]] bool operator==(resource_reference rhs) const noexcept

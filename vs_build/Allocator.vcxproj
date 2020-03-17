@@ -120,7 +120,6 @@
     <ClInclude Include="..\include\memory\array_resource.h" />
     <ClInclude Include="..\include\memory\byte_span.h" />
     <ClInclude Include="..\include\memory\freelist_resource.h" />
-    <ClInclude Include="..\include\memory\malloc_resource.h" />
     <ClInclude Include="..\include\memory\memory_common.h" />
     <ClInclude Include="..\include\memory\monotonic_resource.h" />
     <ClInclude Include="..\include\memory\new_resource.h" />

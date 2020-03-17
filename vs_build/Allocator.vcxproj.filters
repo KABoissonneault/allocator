@@ -33,9 +33,6 @@
     <ClInclude Include="..\include\memory\freelist_resource.h">
       <Filter>Resource Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\memory\malloc_resource.h">
-      <Filter>Resource Files\memory</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\memory\resource_reference.h">
       <Filter>Resource Files\memory</Filter>
     </ClInclude>

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "memory/resource.h"
 #include "memory/byte_span.h"
 
 #include <type_traits>
@@ -15,6 +16,7 @@ namespace kab
 	class freelist_resource : InnerResource 
 	{
 		static_assert(BlockSize >= sizeof(void*), "Come on, give me at least something to work with");
+		static_assert(is_power_of_two(BlockSize), "Powers of two only :)");
 
 		[[nodiscard]] InnerResource& access_inner() & noexcept { return static_cast<InnerResource&>(*this); }
 		[[nodiscard]] InnerResource&& access_inner() && noexcept { return static_cast<InnerResource&&>(*this); }
@@ -25,6 +27,11 @@ namespace kab
 		};
 
 		node* free_head = nullptr;
+
+		static constexpr align_t get_target_alignment()
+		{
+			return static_cast<align_t>(BlockSize); // align to block size for now
+		}
 
 	public:
 		constexpr freelist_resource() = default;
@@ -54,65 +61,72 @@ namespace kab
 			clear();
 		}
 
-		// If the memory fails to allocate, the behavior depends on the inner resource
-		[[nodiscard]] byte_span allocate(size_t byte_size)
+		/**
+		 * allocate
+		 *
+		 * If 'byte_size' is smaller or equal to BlockSize, a block from the freelist is returned to the caller if there's any. 
+		 * Otherwise, a block of BlockSize bytes is allocated from the inner resource.
+		 * If 'byte_size' is bigger than BlockSize, a block is always allocated from the inner resource.
+		 * If the freelist cannot fulfill the alignment requirement with the freelist, it may also allocate from the inner resource.
+		 *
+		 * On allocation failure, the behavior depends on the inner resource. This resource has basic exception guarantee.
+		 */
+		[[nodiscard]] byte_span allocate(size_t byte_size, align_t alignment)
 		{
-			if (byte_size <= BlockSize)
-			{
-				if (free_head == nullptr) // we don't have anything in the freelist, allocate some new stuff
-				{
-					byte_span block = access_inner().allocate(BlockSize);
-					block.size = byte_size;
-					return block;
-				}
-				else
-				{
-					// Just return the head of the freelist
-					node* const head = free_head;
-					free_head = head->next;
-					return { reinterpret_cast<byte*>(head), byte_size };
-				}
-			}
-			else // we don't handle blocks over our block size
-			{
-				return access_inner().allocate(byte_size);
-			}
+			byte_span s = over_allocate(byte_size, alignment);
+			s.size = byte_size;
+			return s;
 		}
 
-		[[nodiscard]] byte_span over_allocate(size_t byte_size)
+		/**
+		 * over_allocate
+		 *
+		 * Like allocate, but the returned size can be bigger than the requested size
+		 */
+		[[nodiscard]] byte_span over_allocate(size_t byte_size, align_t requested_alignment)
 		{
-			if (byte_size <= BlockSize)
+			const bool over_aligned = requested_alignment > get_target_alignment();
+
+			if (byte_size > BlockSize)
 			{
-				if (free_head == nullptr)
-				{
-					return access_inner().allocate(BlockSize);
-				}
-				else
-				{
-					// Just return the head of the freelist
-					node* const head = free_head;
-					free_head = head->next;
-					return { reinterpret_cast<byte*>(head), BlockSize };
-				}
+				return access_inner().allocate(byte_size, over_aligned ? requested_alignment : get_target_alignment());
 			}
-			else
+
+			if (over_aligned) // we can't fulfill over-aligned requests from the freelist
 			{
-				return access_inner().allocate(byte_size);
+				return access_inner().allocate(BlockSize, requested_alignment);
 			}
+
+			if (free_head == nullptr) // we don't have anything in the freelist, allocate some new stuff
+			{
+				return access_inner().allocate(BlockSize, get_target_alignment());
+			}
+
+			// Just return the head of the freelist
+			node* const head = free_head;
+			free_head = head->next;
+			return { reinterpret_cast<byte*>(head), BlockSize };
 		}
 
-		void deallocate(byte_span bytes) noexcept
+		/**
+		 * deallocate
+		 *
+		 * To be called with the span returned from the allocation function, and the requested alignment
+		 */
+		void deallocate(byte_span bytes, align_t alignment) noexcept
 		{
-			// Append the bytes to this freelist
-			if (bytes.size <= BlockSize)
+			// If the memory was over-sized or over-aligned, we can't put the block on the freelist
+			// This is because when the freelist is cleared, we assume that the allocation was made with "BlockSize" and target alignment as the parameters
+			// If the allocation was made with other values, we can't deallocate it reliably on freelist clear.
+			// Therefore, deallocate it here
+			if (bytes.size > BlockSize || alignment > get_target_alignment())
 			{
-				node* const current_head = free_head;
-				free_head = new(bytes.data) node{ current_head };
+				return access_inner().deallocate(bytes, alignment);
 			}
-			else
-			{
-				access_inner().deallocate(bytes);
-			}
+
+			// Push this block on top of the freelist
+			node* const current_head = free_head;
+			free_head = new(bytes.data) node{ current_head };
 		}
 
 		// Frees the entire freelist
@@ -123,7 +137,7 @@ namespace kab
 			{
 				node* const head = free_head;
 				free_head = head->next;
-				access_inner().deallocate({ reinterpret_cast<byte*>(head), BlockSize });
+				access_inner().deallocate({ reinterpret_cast<byte*>(head), BlockSize }, get_target_alignment());
 			}
 		}
 
