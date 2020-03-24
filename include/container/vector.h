@@ -8,12 +8,11 @@ namespace kab
 	/**
 	 * 'vector' is a dynamically-resizing contiguous container
 	 *
-	 * Kind of like std::vector, but with my allocator model.
-	 * T must be Relocatable.
+	 * Kind of like std::vector, but with the kab allocator model.
 	 * 'vector' only provides basic exception guarantees for all functions
-	 * 'vector' itself is also Relocatable
+	 * 'vector' is Relocatable
 	 */
-	template<typename T, typename Allocator = allocator<malloc_resource>>
+	template<typename T, typename MemoryResource>
 	class vector : Allocator {
 		Allocator& access_alloc() & noexcept { return static_cast<Allocator&>(*this); }
 		Allocator const& access_alloc() const& noexcept { return static_cast<Allocator const&>(*this); }

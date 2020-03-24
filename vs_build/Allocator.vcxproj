@@ -125,6 +125,7 @@
     <ClInclude Include="..\include\memory\new_resource.h" />
     <ClInclude Include="..\include\memory\resource.h" />
     <ClInclude Include="..\include\memory\resource_reference.h" />
+    <ClInclude Include="..\include\trait\relocatable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

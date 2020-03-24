@@ -19,6 +19,9 @@
     <Filter Include="Resource Files\container">
       <UniqueIdentifier>{8287d224-abb7-4f93-a8bf-08a87b9c2179}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\trait">
+      <UniqueIdentifier>{8aea108a-8f46-41ce-8a35-0aa41d58beb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\container\vector.h">
@@ -50,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="..\include\memory\memory_common.h">
       <Filter>Resource Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\trait\relocatable.h">
+      <Filter>Resource Files\trait</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
