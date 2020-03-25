@@ -57,5 +57,8 @@
     <ClInclude Include="..\include\trait\relocatable.h">
       <Filter>Resource Files\trait</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\memory\detail\over_allocate.h">
+      <Filter>Resource Files\memory</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

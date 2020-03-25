@@ -119,6 +119,7 @@
     <ClInclude Include="..\include\memory\allocator.h" />
     <ClInclude Include="..\include\memory\array_resource.h" />
     <ClInclude Include="..\include\memory\byte_span.h" />
+    <ClInclude Include="..\include\memory\detail\over_allocate.h" />
     <ClInclude Include="..\include\memory\freelist_resource.h" />
     <ClInclude Include="..\include\memory\memory_common.h" />
     <ClInclude Include="..\include\memory\monotonic_resource.h" />
