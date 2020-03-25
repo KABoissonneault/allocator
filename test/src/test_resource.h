@@ -41,8 +41,8 @@ public:
 	// Get the total number of bytes ever allocated
 	size_t get_total_alloc() const noexcept { return m_total_alloc; }
 
-	[[nodiscard]] bool operator==(test_resource const& rhs) const noexcept
+	[[nodiscard]] friend bool operator==(test_resource const& lhs, test_resource const& rhs) noexcept
 	{
-		return &rhs == this;
+		return &lhs == &rhs;
 	}
 };

@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\container\vector.test.cpp" />
     <ClCompile Include="..\src\freelist_resource.test.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\memory\new_resource.test.cpp" />

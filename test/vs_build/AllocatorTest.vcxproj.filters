@@ -16,6 +16,9 @@
     <Filter Include="Source Files\memory">
       <UniqueIdentifier>{85f52ade-b309-4137-9969-88968022fb35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\container">
+      <UniqueIdentifier>{8d11abe3-499b-417c-811d-36b69a45aaf6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -29,6 +32,9 @@
     </ClCompile>
     <ClCompile Include="..\src\new.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\container\vector.test.cpp">
+      <Filter>Source Files\container</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
