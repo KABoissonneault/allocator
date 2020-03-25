@@ -21,15 +21,17 @@ namespace kab
 	 *  Even a non-trivially copyable type, like a string or a vector, can often be trivially relocated. 
 	 */
 	template<typename T>
-	struct is_trivially_relocatable : std::false_type
-	{
-
-	};
+	struct is_trivially_relocatable : std::false_type {};
 
 	// Fundamental specializations
+	template<> struct is_trivially_relocatable<decltype(nullptr)> : std::true_type {};
 	template<> struct is_trivially_relocatable<char> : std::true_type {};
 	template<> struct is_trivially_relocatable<unsigned char> : std::true_type {};
 	template<> struct is_trivially_relocatable<signed char> : std::true_type {};
+	template<> struct is_trivially_relocatable<wchar_t> : std::true_type {};
+	template<> struct is_trivially_relocatable<char16_t> : std::true_type {};
+	template<> struct is_trivially_relocatable<char32_t> : std::true_type {};
+	// template<> struct is_trivially_relocatable<char8_t> : std::true_type {}; // c++20
 	template<> struct is_trivially_relocatable<signed short> : std::true_type {};
 	template<> struct is_trivially_relocatable<unsigned short> : std::true_type {};
 	template<> struct is_trivially_relocatable<signed int> : std::true_type {};
@@ -38,4 +40,11 @@ namespace kab
 	template<> struct is_trivially_relocatable<unsigned long> : std::true_type {};
 	template<> struct is_trivially_relocatable<signed long long> : std::true_type {};
 	template<> struct is_trivially_relocatable<unsigned long long> : std::true_type {};
+	template<> struct is_trivially_relocatable<float> : std::true_type {};
+	template<> struct is_trivially_relocatable<double> : std::true_type {};
+	template<> struct is_trivially_relocatable<long double> : std::true_type {};
+	template<> struct is_trivially_relocatable<bool> : std::true_type {};
+
+	template<typename T>
+	inline constexpr bool is_trivially_relocatable_v = is_trivially_relocatable<T>::value;
 }
