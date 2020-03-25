@@ -34,7 +34,7 @@ namespace kab
 			m_resource->deallocate(s, alignment);
 		}
 
-		[[nodiscard]] bool operator==(resource_reference rhs) const noexcept
+		[[nodiscard]] friend bool operator==(resource_reference lhs, resource_reference rhs) noexcept
 		{
 			if constexpr (std::is_empty_v<Resource>)
 			{
@@ -42,8 +42,14 @@ namespace kab
 			}
 			else
 			{
-				return m_resource == rhs.m_resource || *m_resource == *rhs.m_resource;
+				return lhs.m_resource == rhs.m_resource || *lhs.m_resource == *rhs.m_resource;
 			}
 		}
 	};
+
+	template<typename Resource>
+	auto make_reference(Resource& resource) noexcept -> kab::resource_reference<std::remove_const_t<std::remove_reference_t<Resource>>>
+	{
+		return { resource };
+	}
 }
