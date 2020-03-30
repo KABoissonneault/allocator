@@ -36,8 +36,7 @@ namespace kab
 		{
 			if (current < 4) {
 				return 4;
-			}
-			else {
+			} else {
 				return current * 2;
 			}
 		}
@@ -52,11 +51,20 @@ namespace kab
 			byte_span const new_block = detail::over_allocate(access_resource(), new_capacity * sizeof(T), static_cast<align_t>(alignof(T)));
 			size_t const current_size = size();
 
+			// Default construct the new objects
+			T* new_it = new_block.data;
+			T* const new_sent = new_it + current_size;
+			for (; new_it != new_sent; ++new_it) {
+				new(new_it) T;
+			}
+
 			// Relocate data
 			memcpy(new_block.data, m_data, current_size * sizeof(T));
 
+			// Free the previous storage
 			free_storage();
 
+			// Use the new storage
 			m_data = reinterpret_cast<T*>(new_block.data);
 			m_size = m_data + current_size;
 			m_byte_capacity = new_block.size;
@@ -67,17 +75,22 @@ namespace kab
 			const size_t current_capacity = capacity();
 			if (current_capacity < n)
 			{
-				size_t new_capacity;
-				do
-				{
-					new_capacity = get_next_capacity(current_capacity);
-				} while (new_capacity < n);
-				reserve(new_capacity);
+				const size_t new_capacity = get_next_capacity(current_capacity);
+				reallocate(std::max(new_capacity, n));
 			}
 		}
 	public:
+		/**
+		 * vector is default constructible if the memory resource is default constructible
+		 */
 		vector() = default;
+		/**
+		 * vector is never copy constructible
+		 */
 		vector(vector const&) = delete;
+		/**
+		 * vector is noexcept move constructible if the memory resource is moveable
+		 */
 		vector(vector && rhs) noexcept
 			: MemoryResource(std::move(rhs).access_resource())
 			, m_data(std::exchange(rhs.m_data, nullptr))
@@ -86,8 +99,14 @@ namespace kab
 		{
 
 		}
+		/**
+		 * vector is never copy assignable
+		 */
 		vector& operator=(vector const& rhs) = delete;
-		vector& operator=(vector&& rhs) noexcept
+		/**
+		 * vector is move assignable if the memory resource is moveable
+		 */
+		vector& operator=(vector && rhs) noexcept
 		{
 			if (this != &rhs)
 			{
@@ -108,6 +127,9 @@ namespace kab
 			free_storage();
 		}
 
+		/**
+		 * vector is swappable if the memory resource is swappable
+		 */
 		friend void swap(vector& v1, vector& v2) noexcept
 		{
 			using std::swap;
@@ -117,10 +139,18 @@ namespace kab
 			swap(v1.m_byte_capacity, v2.m_byte_capacity);
 		}
 
+		using value_type = T;
 		using memory_resource = MemoryResource;
+		using iterator = T*;
+		using const_iterator = T const*;
+		using sentinel = iterator;
+		using const_sentinel = const_iterator;
 
+		/**
+		 * If the memory resource is moveable, this constructor lets the user provide a resource value
+		 */
 		vector(memory_resource r) noexcept
-			: MemoryResource(r)
+			: MemoryResource(std::move(r))
 		{
 
 		}
@@ -145,13 +175,35 @@ namespace kab
 		T const* data() const noexcept { return m_data; }
 		size_t size() const noexcept { return std::distance(m_data, m_size); }
 		size_t capacity() const noexcept { return m_byte_capacity / sizeof(T); }
-		T* begin() noexcept { return m_data; }
-		T* end() noexcept { return m_size; }
-		T const* begin() const noexcept { return m_data; }
-		T const* end() const noexcept { return m_size; }
+		iterator begin() noexcept { return m_data; }
+		sentinel end() noexcept { return m_size; }
+		const_iterator begin() const noexcept { return m_data; }
+		const_sentinel end() const noexcept { return m_size; }
+		T& front() { return *m_data; }
+		T& back() { return *(m_size - 1); }
 
 		T & operator[](size_t i) { return m_data[i]; }
 		T const& operator[](size_t i) const { return m_data[i]; }
+
+		vector& push_back()
+		{
+			ensure_capacity(size() + 1);
+			new(m_size) T;
+			++m_size;
+
+			return *this;
+		}
+
+		vector& push_back_n(size_t n)
+		{
+			ensure_capacity(size() + n);
+			T const* sent = m_size + n;
+			for (; m_size != sent; ++m_size) {
+				new(m_size) T;
+			}
+
+			return *this;
+		}
 
 		vector& push_back(T const& e)
 		{
@@ -203,12 +255,33 @@ namespace kab
 
 		void reserve(size_t n)
 		{
-			if (capacity() >= n)
-			{
-				return;
+			if (capacity() < n) {
+				reallocate(n);
 			}
+		}
 
-			reallocate(n);
+		void resize(size_t n)
+		{
+			const size_t current_size = size();
+			
+			if (current_size < n) {
+				if (capacity() < n) {
+					reallocate(n);
+				}
+
+				// Construct the new objects
+				T* it = data() + current_size;
+				T* const sent = it + (n - current_size);
+				for (; it != sent; ++it) {
+					new(it) T;
+				}
+
+				// Use the new "size" sentinel
+				m_size = it;
+			} else if (current_size > n) {
+				m_size = data() + n;
+				std::destroy(m_size, m_size + (current_size - n));
+			}
 		}
 
 		void clear() noexcept
