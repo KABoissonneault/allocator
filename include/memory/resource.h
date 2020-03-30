@@ -60,20 +60,24 @@ namespace kab
 	 *          - Which is a deallocation function
 	 *          - Where 's' is a span with the values returned by a call to an allocation function
 	 *          - Where 'a' was the alignment requested on the allocation function
+	 *			- If the size of 's' is 0, the deallocation must have no effects. In that case, its pointer may have any value
 	 *  
+	 *  Memory resources are meant to be used as "value types", that is, they're always passed by value. If reference semantics are desired, see resource_reference.
+	 *  Two memory resources are considered equivalent if memory allocated from one resource can be deallocated from the other. Empty (aka monostate) resources are all equivalent.
+	 *
 	 *  Memory resources can have extensions.
 	 *  
 	 *  Relocatable
 	 *
-	 *  If the memory resource is relocatable, it must be trivially relocatable.
+	 *  If the memory resource is relocatable, it must be trivially relocatable. The relocated resource must be equivalent to the original.
 	 *
 	 *  Moveable
 	 * 
-	 *  A memory resource is moveable if it is noexcept move constructible, and noexcept move assignable
+	 *  A memory resource is moveable if it is relocatable, noexcept move constructible, and noexcept move assignable. The moved resource must be equivalent to the original.
 	 *
 	 *  Copyable
 	 *
-	 *  A memory resource is copyable if it is moveable, noexcept copy constructible, and noexcept copy assignable
+	 *  A memory resource is copyable if it is moveable, noexcept copy constructible, and noexcept copy assignable. The copied resource must be equivalent to the original.
 	 *
 	 *  Over Allocator
 	 *  
@@ -84,5 +88,11 @@ namespace kab
 	 *      void over_deallocate(byte_span s, align_t a)
 	 *          - Which is an optional deallocation function. If provided, the user must call this instead of 'deallocate' when using over-allocations
 	 *          - Otherwise, behaves like 'deallocate'
+	 *
+	 *  Comparison
+	 *
+	 *  An allocator may support operator== to compare two resources of the same type for equivalence. 
+	 *  Resources of an empty (as in std::is_empty) memory resource type are always equivalent, no operator== needed.
+	 *  Resources of non-empty type with no operator== are always considered non-equivalent.
 	 */
 }
