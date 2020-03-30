@@ -22,7 +22,7 @@ TEST_CASE("Freelist BlockSize Alloc", "[memory]")
 
 		REQUIRE(first_alloc.size == BlockSize); // 'allocate' always returns the requested size
 		REQUIRE(tester.get_last_alloc() == BlockSize); // freelist only allocates in chunks of "BlockSize"
-		REQUIRE(static_cast<kab::align_t>(tester.get_last_align()) >= kab::max_align_v); // alignment needs to be respected
+		REQUIRE(static_cast<kab::align_t>(tester.get_last_alloc_align()) >= kab::max_align_v); // alignment needs to be respected
 		REQUIRE(tester.get_current_alloc() == BlockSize);
 
 		freelist.deallocate(first_alloc, kab::max_align_v);
