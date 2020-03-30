@@ -22,6 +22,9 @@
     <Filter Include="Resource Files\trait">
       <UniqueIdentifier>{8aea108a-8f46-41ce-8a35-0aa41d58beb9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\memory\detail">
+      <UniqueIdentifier>{59f82307-ab1b-4ba3-bfb7-e70946c0e895}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\container\vector.h">
@@ -58,7 +61,7 @@
       <Filter>Resource Files\trait</Filter>
     </ClInclude>
     <ClInclude Include="..\include\memory\detail\over_allocate.h">
-      <Filter>Resource Files\memory</Filter>
+      <Filter>Resource Files\memory\detail</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
