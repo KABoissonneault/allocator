@@ -25,11 +25,11 @@
     <Filter Include="Resource Files\memory\detail">
       <UniqueIdentifier>{59f82307-ab1b-4ba3-bfb7-e70946c0e895}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\container\inl">
+      <UniqueIdentifier>{5c9d1eeb-e0cf-4095-8c9d-289d6dd319ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\container\vector.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\memory\allocator.h">
       <Filter>Resource Files\memory</Filter>
     </ClInclude>
@@ -62,6 +62,12 @@
     </ClInclude>
     <ClInclude Include="..\include\memory\detail\over_allocate.h">
       <Filter>Resource Files\memory\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\container\vector.h">
+      <Filter>Resource Files\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\container\inl\vector.inl.h">
+      <Filter>Resource Files\container\inl</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

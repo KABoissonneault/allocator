@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\container\inl\vector.inl.h" />
     <ClInclude Include="..\include\container\vector.h" />
     <ClInclude Include="..\include\memory\allocator.h" />
     <ClInclude Include="..\include\memory\array_resource.h" />

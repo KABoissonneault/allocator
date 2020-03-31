@@ -157,9 +157,17 @@ TEST_CASE("Container Vector Overallocate", "[container]")
 	overallocate_test_resource<overallocate_size> r;
 
 	over_vector<kab::byte> v(r);
-	v.reserve(16); // over-allocate at least 16 bytes, which is under 'overallocate_size'
+
+	constexpr auto small_alloc_size = overallocate_size / 4;
+	v.reserve(small_alloc_size); // over-allocate at least 'small_alloc_size', which is smaller than 'overallocate_size'
 	const size_t current_alloc = r.get_total_alloc();
 	REQUIRE(r.was_last_alloc_over());
 	REQUIRE(r.get_last_alloc() == 16); // expected the requested alignment to be 16
-	REQUIRE(v.capacity() == overallocate_size); // expected vector to use the extra capacity
+	REQUIRE(v.capacity() == overallocate_size); // expected vector to use the extra 'over' capacity
+
+	v.resize(overallocate_size); 
+
+	REQUIRE(r.get_total_alloc() == current_alloc); // expected no reallocation
+	REQUIRE(v.size() == overallocate_size);
+	REQUIRE(v.capacity() == overallocate_size);
 }
