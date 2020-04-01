@@ -1,6 +1,7 @@
 #pragma once
 
 #include "memory/memory_common.h"
+#include "memory/byte_span.h"
 
 namespace kab
 {
