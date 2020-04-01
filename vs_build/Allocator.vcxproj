@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClInclude Include="..\include\container\inl\vector.inl.h" />
     <ClInclude Include="..\include\container\vector.h" />
+    <ClInclude Include="..\include\core\compiler.h" />
     <ClInclude Include="..\include\memory\allocator.h" />
     <ClInclude Include="..\include\memory\array_resource.h" />
     <ClInclude Include="..\include\memory\byte_span.h" />

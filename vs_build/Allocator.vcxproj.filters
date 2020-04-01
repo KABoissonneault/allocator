@@ -28,6 +28,9 @@
     <Filter Include="Resource Files\container\inl">
       <UniqueIdentifier>{5c9d1eeb-e0cf-4095-8c9d-289d6dd319ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\core">
+      <UniqueIdentifier>{85f77e3e-1a1f-455a-80e2-5cc53ba03db9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\memory\allocator.h">
@@ -68,6 +71,9 @@
     </ClInclude>
     <ClInclude Include="..\include\container\inl\vector.inl.h">
       <Filter>Resource Files\container\inl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\core\compiler.h">
+      <Filter>Resource Files\core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
