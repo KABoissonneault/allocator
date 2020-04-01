@@ -90,13 +90,13 @@ namespace kab
 	}
 
 	template<typename T, typename R>
-	inline void swap(vector<T, R>& v1, vector<T, R>& v2) noexcept
+	void vector<T, R>::swap(vector& rhs) noexcept
 	{
 		using std::swap;
-		swap(v1.access_resource(), v2.access_resource());
-		swap(v1.m_data, v2.m_data);
-		swap(v1.m_size, v2.m_size);
-		swap(v1.m_byte_capacity, v2.m_byte_capacity);
+		swap(access_resource(), rhs.access_resource());
+		swap(m_data, rhs.m_data);
+		swap(m_size, rhs.m_size);
+		swap(m_byte_capacity, rhs.m_byte_capacity);
 	}
 
 	template<typename T, typename R>

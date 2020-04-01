@@ -18,9 +18,12 @@ namespace kab
 	 *
 	 * vector is never copyable, is noexcept moveable if the resource is moveable, and is trivially relocatable if the resource is relocatable or empty
 	 * 
-	 * Functions that add elements to the container can cause a reallocation if the size cannot grow beyond the current capacity.
+	 * Functions that add elements to the container, also called construction functions, can cause a reallocation 
+	 * if the size cannot grow beyond the current capacity.
 	 * On any function that can reallocate, vector requires its element type to be trivially relocatable. 
 	 * Some of these functions may additionally require moveability or copyability
+	 *
+	 * As a general rule, functions that have preconditions or functions that can allocate are not marked noexcept, but everything else should be
 	 */
 	template<typename T, typename MemoryResource>
 	class vector : MemoryResource {
@@ -66,7 +69,7 @@ namespace kab
 		/**
 		 * vector is swappable if the memory resource is swappable
 		 */
-		friend void swap(vector& v1, vector& v2) noexcept;
+		void swap(vector& rhs) noexcept;
 
 		using value_type = T;
 		using memory_resource = MemoryResource;
@@ -78,7 +81,7 @@ namespace kab
 		/**
 		 * If the memory resource is moveable, this constructor lets the user provide a resource value
 		 */
-		vector(memory_resource r) noexcept
+		explicit vector(memory_resource r) noexcept
 			: MemoryResource(std::move(r))
 		{
 
@@ -268,4 +271,4 @@ namespace kab
 	};
 }
 
-#include "container/inl/vector­.inl.h"
+#include "container/inl/vector.inl.h"

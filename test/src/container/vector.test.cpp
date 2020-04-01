@@ -23,39 +23,46 @@ TEST_CASE("Container Vector Compilation", "[container]")
 
 TEST_CASE("Container Vector Empty", "[container]")
 {
-	test_resource resource;
+	test_resource r;
+
+	auto const test_empty = [](vector<int> const& v)
+	{
+		REQUIRE(v.size() == 0);
+		REQUIRE(v.capacity() == 0);
+		REQUIRE(v.begin() == v.end());
+	};
+
+	auto const test_alloc = [&r](vector<int> const& v)
+	{
+		REQUIRE(v.get_resource() == kab::make_reference(r));
+		REQUIRE(r.get_last_alloc() == 0);
+	};
 		
 	// Default construction
-	vector<int> test_vec1(resource);
-	REQUIRE(test_vec1.get_resource() == kab::make_reference(resource));
-	REQUIRE(test_vec1.size() == 0);
-	REQUIRE(test_vec1.capacity() == 0);
-	REQUIRE(resource.get_last_alloc() == 0);
-	REQUIRE(test_vec1.begin() == test_vec1.end());
+	vector<int> v1(r), v2(r);
+	test_empty(v1);
+	test_alloc(v1);
 
 	// Move of default value
-	vector<int> test_vec2(std::move(test_vec1));
-	REQUIRE(test_vec2.get_resource() == kab::make_reference(resource));
-	REQUIRE(test_vec2.size() == 0);
-	REQUIRE(test_vec2.capacity() == 0);
-	REQUIRE(resource.get_last_alloc() == 0);
-	REQUIRE(test_vec2.begin() == test_vec1.end());
+	vector<int> move(std::move(v2));
+	test_empty(move);
+	test_alloc(move);
 
 	// Move of default value
-	test_vec1 = std::move(test_vec2);
-	REQUIRE(test_vec1.get_resource() == kab::make_reference(resource));
-	REQUIRE(test_vec1.size() == 0);
-	REQUIRE(test_vec1.capacity() == 0);
-	REQUIRE(resource.get_last_alloc() == 0);
-	REQUIRE(test_vec1.begin() == test_vec1.end());
+	v2 = std::move(move);
+	test_empty(v2);
+	test_alloc(v2);
+
+	// Self-move assignment of default value
+	v2 = std::move(v2);
+	test_empty(v2);
+	test_alloc(v2);
 	
-	// Self-assignment of default value
-	test_vec1 = std::move(test_vec1);
-	REQUIRE(test_vec1.get_resource() == kab::make_reference(resource));
-	REQUIRE(test_vec1.size() == 0);
-	REQUIRE(test_vec1.capacity() == 0);
-	REQUIRE(resource.get_last_alloc() == 0);
-	REQUIRE(test_vec1.begin() == test_vec1.end());
+	v1.swap(v2);
+	test_empty(v1);
+	test_alloc(v1);
+	test_empty(v2);
+	test_alloc(v2);
 }
 
 TEST_CASE("Container Vector Trivial Value", "[container]")
