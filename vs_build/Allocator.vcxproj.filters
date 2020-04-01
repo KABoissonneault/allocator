@@ -78,5 +78,11 @@
     <ClInclude Include="..\include\core\atomic_op.h">
       <Filter>Resource Files\core</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\container\inl\array_value.inl.h">
+      <Filter>Resource Files\container\inl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\container\array_value.h">
+      <Filter>Resource Files\container</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

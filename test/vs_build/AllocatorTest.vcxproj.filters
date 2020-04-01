@@ -39,6 +39,9 @@
     <ClCompile Include="..\src\memory\resource_reference.test.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\container\array_value.test.cpp">
+      <Filter>Source Files\container</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\test_resource.h">

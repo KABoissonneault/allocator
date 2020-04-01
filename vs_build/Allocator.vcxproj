@@ -115,6 +115,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\container\array_value.h" />
+    <ClInclude Include="..\include\container\inl\array_value.inl.h" />
     <ClInclude Include="..\include\container\inl\vector.inl.h" />
     <ClInclude Include="..\include\container\vector.h" />
     <ClInclude Include="..\include\core\atomic_op.h" />
