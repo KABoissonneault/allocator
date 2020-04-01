@@ -75,5 +75,8 @@
     <ClInclude Include="..\include\core\compiler.h">
       <Filter>Resource Files\core</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\core\atomic_op.h">
+      <Filter>Resource Files\core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
