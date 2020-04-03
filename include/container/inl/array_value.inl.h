@@ -11,7 +11,7 @@ namespace kab
 	auto array_value<ElementT, ResourceT>::new_control(ResourceT& r, size_t size) -> control*
 	{
 		const auto alloc_size = sizeof(control) + (size - 1) * sizeof(ElementT);
-		byte_span const s = r.allocate(alloc_size, static_cast<align_t>(alignof(control)));
+		byte_span const s = r.allocate(alloc_size, align_v<control>);
 		auto const c = new(s.data) control;
 		c->count = 1;
 		c->size = size;
@@ -52,7 +52,7 @@ namespace kab
 	
 			// deallocate the memory
 			auto const alloc_size = sizeof(control) + (c->size - 1) * sizeof(ElementT);
-			r.deallocate({ reinterpret_cast<byte*>(c), alloc_size, }, align_t{ alignof(control) });
+			r.deallocate({ reinterpret_cast<byte*>(c), alloc_size, }, align_v<control>);
 		}
 	}
 

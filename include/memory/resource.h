@@ -8,6 +8,9 @@ namespace kab
 	// Strong typedef for an alignment value
 	enum class align_t : size_t {};
 
+	template<typename T>
+	inline constexpr align_t align_v{ alignof(T) };
+
 	inline constexpr bool operator==(align_t lhs, align_t rhs) noexcept
 	{
 		return static_cast<size_t>(lhs) == static_cast<size_t>(rhs);

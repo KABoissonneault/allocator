@@ -7,8 +7,7 @@ namespace kab
 	{
 		if (current < 4) {
 			return 4;
-		}
-		else {
+		} else {
 			return current * 2;
 		}
 	}
@@ -16,21 +15,20 @@ namespace kab
 	template<typename T, typename R>
 	void vector<T, R>::free_storage() noexcept
 	{
-		detail::over_deallocate(access_resource(), { reinterpret_cast<byte*>(m_data), m_byte_capacity }, static_cast<align_t>(alignof(T)));
+		detail::over_deallocate(access_resource(), { reinterpret_cast<byte*>(m_data), m_byte_capacity }, align_v<T>);
 	}
 
 	template<typename T, typename R>
 	void vector<T, R>::reallocate(size_t new_capacity)
 	{
-		byte_span const new_block = detail::over_allocate(access_resource(), new_capacity * sizeof(T), static_cast<align_t>(alignof(T)));
+		byte_span const new_block = detail::over_allocate(access_resource(), new_capacity * sizeof(T), align_v<T>);
 		size_t const current_size = size();
 
 		// Default construct the new objects
-		T* new_it = new_block.data;
-		T* const new_sent = new_it + current_size;
-		for (; new_it != new_sent; ++new_it) {
-			new(new_it) T;
-		}
+		std::uninitialized_default_construct_n(
+			reinterpret_cast<T*>(new_block.data)
+			, current_size
+		);
 
 		// Relocate data
 		memcpy(new_block.data, m_data, current_size * sizeof(T));
@@ -249,7 +247,7 @@ namespace kab
 	void vector<T, R>::clear_and_shrink() noexcept
 	{
 		std::destroy(m_data, m_size);
-		detail::over_deallocate(access_resource(), { reinterpret_cast<byte*>(m_data), m_byte_capacity }, static_cast<align_t>(alignof(T)));
+		detail::over_deallocate(access_resource(), { reinterpret_cast<byte*>(m_data), m_byte_capacity }, align_v<T>);
 		m_data = nullptr;
 		m_size = nullptr;
 		m_byte_capacity = 0;

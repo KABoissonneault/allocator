@@ -12,7 +12,7 @@ namespace kab
 	* The freelist has an inner resource which provides the actual memory resources, and the freelist manages the freed blocks to avoid actually freeing memory.
 	* Smaller allocations are upgraded to the bucket size, and bigger allocations are directly delegated to the inner resource
 	*/
-	template<typename InnerResource, size_t BlockSize>
+	template<typename InnerResource, size_t BlockSize, align_t Alignment = static_cast<align_t>(BlockSize)>
 	class freelist_resource : InnerResource 
 	{
 		static_assert(BlockSize >= sizeof(void*), "Come on, give me at least something to work with");
@@ -30,7 +30,7 @@ namespace kab
 
 		static constexpr align_t get_target_alignment()
 		{
-			return static_cast<align_t>(BlockSize); // align to block size for now
+			return Alignment;
 		}
 
 	public:
