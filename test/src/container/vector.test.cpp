@@ -39,9 +39,14 @@ TEST_CASE("Container Vector Empty", "[container]")
 	};
 		
 	// Default construction
-	vector<int> v1(r), v2(r);
+	vector<int> v1(r);
 	test_empty(v1);
 	test_alloc(v1);
+
+	// Container factory
+	auto v2 = vector<int>::from_container(v1);
+	test_empty(v2);
+	test_alloc(v2);
 
 	// Move of default value
 	vector<int> move(std::move(v2));
