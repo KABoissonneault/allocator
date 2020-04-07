@@ -2,6 +2,7 @@
 
 #include "memory/byte_span.h"
 #include "memory/resource.h"
+#include "trait/relocatable.h"
 
 #include <type_traits>
 
@@ -82,6 +83,9 @@ namespace kab
 			}
 		}
 	};
+
+	template<typename Resource>
+	struct is_trivially_relocatable<resource_reference<Resource>> : std::true_type {};
 
 	template<typename Resource>
 	auto make_reference(Resource& resource) noexcept -> kab::resource_reference<std::remove_const_t<std::remove_reference_t<Resource>>>

@@ -19,6 +19,7 @@ TEST_CASE("Container Vector Compilation", "[container]")
 	REQUIRE(std::is_nothrow_move_assignable_v<vector<int>>);
 	REQUIRE(std::is_nothrow_constructible_v<vector<int>, test_resource&>);
 	REQUIRE(std::is_nothrow_swappable_v<vector<int>>);
+	REQUIRE(kab::is_trivially_relocatable_v<vector<int>>);
 }
 
 TEST_CASE("Container Vector Empty", "[container]")
