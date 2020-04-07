@@ -30,3 +30,36 @@
 *.exe
 *.out
 *.app
+
+# gitignore for C++
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.lib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Other binaries
+*.exe
+*.pdb
+*.idpb
+
+# Visual Studio Files
+*.suo
+*.vcxproj.user
+ipch
+*sdf
+*.log
+.vs
+x64
+Debug
+Release
