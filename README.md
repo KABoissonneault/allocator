@@ -58,6 +58,7 @@ There's a Visual Studio project for unit tests. No CMake at the moment, but cont
 
 # Design decisions
 **Sized deallocation**
+
 Sized deallocation, meaning passing the size of the storage to deallocate, is a must. Maybe when `malloc` was invented, people preferred having to carry only a single pointer around. Nowadays, passing extra information is not an issue to the programmer or the compiler, and is usually not an obstacle to optimizations.
 
 We argue that the user of the resource should always know the size of the allocation anyway. Containers such as `vector` already stores the runtime value of the storage in the form of `capacity`. Other containers, such as node-based ones like `list` or `map`, only allocate in constant sizes (ex: `sizeof(node)`), and therefore can give back this value to the resource without adding runtime overhead.
@@ -65,6 +66,7 @@ We argue that the user of the resource should always know the size of the alloca
 Sized deallocation especially shines in composed resources. We have an example of the issue with unsized deallocation in the default `new[]` operator. When constructing the array object, the operator calls `operator new[]` to allocate memory, which will most likely track the size of the allocation. On top of the, `new[]` needs itself to allocate extra storage to store the number of elements in the array, as it will need to know how many elements to destroy. Should we instead provide size of deallocation, the operator could figure out the number of elements to destroy, and in addition provide the size of the storage to `operator delete[]`. No extra data necessary at all levels.
 
 **Alignment**
+
 Alignment is usually a second consideration for allocation. Bigger alignments are not a problem for correctness, and all types in C++ are natively aligned to `alignof(long double)`, so imposing this alignment on all allocations shouldn't be a problem for most users, right? 
 
 This is of course a limitation for users that need over-alignment (ie: alignments bigger than `alignof(long double)`). Typically, allocators offer an alternate interface with an alignment input (ex: `aligned_alloc`, `operator new(..., align_val_t)`, ...). However, those interfaces usually still align minimally to at least `alignof(void*)`, if not bigger. Also, having a separate interface is extra complexity for both the user and the memory resource implementer. As a result, we always provide an alignment parameter, knowing that:
@@ -78,6 +80,7 @@ We also provide the requested alignment back on deallocation. Resources may have
 The ability for resources to align under the default value can sometimes be beneficial for internal fragmentation. This can be relevant for, say, UTF8 strings, which may use lots of arbitrary-sized, 1-byte aligned allocations. Those allocations should be able to fit anywhere.
 
 **Over-allocate**
+
 It's no secret that some allocation schemes, such as block-based allocations, may sometimes end up allocating more than requested (ex: in order to avoid internal fragmentation). On the other end, some containers like `vector` need to dynamically grow a given storage as the value is built. If there's more room to the storage than initially requested, `vector` should be able to use that information to avoid redundant reallocations. There are a few approaches to achieve this
 
 - `realloc` is found on many allocator APIs. When one needs more storage, the old storage is passed to `realloc` along with a new required capacity, and the implementation can decide whether the current storage fits or whether a new one is required. This is a bit too high-level as an operation for an allocator, as it has a pretty specific use case in mind.
