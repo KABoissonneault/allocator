@@ -1,6 +1,6 @@
 #pragma once
 
-#include "memory/memory_common.h"
+#include "kaballoc/memory/memory_common.h"
 
 namespace kab
 {

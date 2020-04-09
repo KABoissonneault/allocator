@@ -1,7 +1,7 @@
 #pragma once
 
-#include "memory/byte_span.h"
-#include "memory/resource.h"
+#include "kaballoc/memory/byte_span.h"
+#include "kaballoc/memory/resource.h"
 
 #include <new>
 

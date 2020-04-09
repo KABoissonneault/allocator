@@ -1,8 +1,8 @@
 #pragma once
 
-#include "memory/byte_span.h"
-#include "memory/resource.h"
-#include "trait/relocatable.h"
+#include "kaballoc/memory/byte_span.h"
+#include "kaballoc/memory/resource.h"
+#include "kaballoc/trait/relocatable.h"
 
 #include <type_traits>
 

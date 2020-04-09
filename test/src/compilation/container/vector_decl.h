@@ -1,7 +1,7 @@
 #pragma once
 
-#include "container/decl/vector.h"
-#include "memory/new_resource.h"
+#include "kaballoc/container/decl/vector.h"
+#include "kaballoc/memory/new_resource.h"
 
 namespace kab
 {

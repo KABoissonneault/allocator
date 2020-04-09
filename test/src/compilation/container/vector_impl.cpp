@@ -1,6 +1,5 @@
-#include "container/vector.h"
-
-#include "memory/new_resource.h"
+#include "kaballoc/container/vector.h"
+#include "kaballoc/memory/new_resource.h"
 
 namespace kab
 {

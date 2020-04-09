@@ -1,9 +1,9 @@
-#include "container/vector.h"
+#include "kaballoc/container/vector.h"
 
 #include <catch.hpp>
 
-#include "memory/resource_reference.h"
-#include "memory/new_resource.h"
+#include "kaballoc/memory/resource_reference.h"
+#include "kaballoc/memory/new_resource.h"
 #include "test_resource.h"
 
 template<typename T>

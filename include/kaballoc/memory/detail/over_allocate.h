@@ -2,8 +2,8 @@
 
 #include <type_traits>
 
-#include "memory/resource.h"
-#include "memory/byte_span.h"
+#include "kaballoc/memory/resource.h"
+#include "kaballoc/memory/byte_span.h"
 
 namespace kab::detail
 {

@@ -2,8 +2,8 @@
 
 #include <iterator>
 
-#include "memory/resource.h"
-#include "core/atomic_op.h"
+#include "kaballoc/memory/resource.h"
+#include "kaballoc/core/atomic_op.h"
 
 namespace kab
 {

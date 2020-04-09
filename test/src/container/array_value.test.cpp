@@ -1,11 +1,11 @@
-#include "container/array_value.h"
+#include "kaballoc/container/array_value.h"
 
 #include "test_resource.h"
 
 #include <catch.hpp>
 
-#include "memory/resource_reference.h"
-#include "memory/new_resource.h"
+#include "kaballoc/memory/resource_reference.h"
+#include "kaballoc/memory/new_resource.h"
 
 template<typename T>
 using array_value = kab::array_value<T, kab::resource_reference<test_resource>>;

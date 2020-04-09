@@ -1,7 +1,7 @@
 #if !defined(KAB_CORE_ATOMIC_OP_HEADER)
 #define KAB_CORE_ATOMIC_OP_HEADER
 
-#include "core/compiler.h"
+#include "kaballoc/core/compiler.h"
 
 #if KAB_COMPILER_MSVC
 #  include <intrin.h>

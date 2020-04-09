@@ -1,88 +1,85 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="include">
+      <UniqueIdentifier>{aa54ba22-cac8-4361-9efa-dcaaa14e9ae0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="include\memory">
+      <UniqueIdentifier>{ec4a9191-20ee-4e0b-a799-3a6d61e7053f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="include\core">
+      <UniqueIdentifier>{8923ba58-e0b3-4cad-9a6a-f0315e6c8a3b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\memory">
-      <UniqueIdentifier>{a1ffa559-defd-4bf4-a1ec-3dd4b9ba390e}</UniqueIdentifier>
+    <Filter Include="include\memory\detail">
+      <UniqueIdentifier>{82743835-cc59-47c0-a117-75dd9c0db6ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\container">
-      <UniqueIdentifier>{8287d224-abb7-4f93-a8bf-08a87b9c2179}</UniqueIdentifier>
+    <Filter Include="include\container">
+      <UniqueIdentifier>{a96a1bb6-d365-41b6-9fb1-4bd912f7d37b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\trait">
-      <UniqueIdentifier>{8aea108a-8f46-41ce-8a35-0aa41d58beb9}</UniqueIdentifier>
+    <Filter Include="include\trait">
+      <UniqueIdentifier>{a01ece6f-1fa7-43e7-9bc7-0c6a89b12eef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\memory\detail">
-      <UniqueIdentifier>{59f82307-ab1b-4ba3-bfb7-e70946c0e895}</UniqueIdentifier>
+    <Filter Include="include\container\detail">
+      <UniqueIdentifier>{8baa3b16-8097-48a6-8a2d-8f14703aa436}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\container\inl">
-      <UniqueIdentifier>{5c9d1eeb-e0cf-4095-8c9d-289d6dd319ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\core">
-      <UniqueIdentifier>{85f77e3e-1a1f-455a-80e2-5cc53ba03db9}</UniqueIdentifier>
+    <Filter Include="include\container\decl">
+      <UniqueIdentifier>{0090770e-070e-4586-a4d5-a27cabb39b9c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\memory\allocator.h">
-      <Filter>Resource Files\memory</Filter>
+    <ClInclude Include="..\include\kaballoc\memory\allocator.h">
+      <Filter>include\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\memory\byte_span.h">
-      <Filter>Resource Files\memory</Filter>
+    <ClInclude Include="..\include\kaballoc\memory\array_resource.h">
+      <Filter>include\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\memory\freelist_resource.h">
-      <Filter>Resource Files\memory</Filter>
+    <ClInclude Include="..\include\kaballoc\memory\byte_span.h">
+      <Filter>include\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\memory\resource_reference.h">
-      <Filter>Resource Files\memory</Filter>
+    <ClInclude Include="..\include\kaballoc\memory\freelist_resource.h">
+      <Filter>include\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\memory\monotonic_resource.h">
-      <Filter>Resource Files\memory</Filter>
+    <ClInclude Include="..\include\kaballoc\memory\memory_common.h">
+      <Filter>include\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\memory\array_resource.h">
-      <Filter>Resource Files\memory</Filter>
+    <ClInclude Include="..\include\kaballoc\memory\monotonic_resource.h">
+      <Filter>include\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\memory\new_resource.h">
-      <Filter>Resource Files\memory</Filter>
+    <ClInclude Include="..\include\kaballoc\memory\new_resource.h">
+      <Filter>include\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\memory\resource.h">
-      <Filter>Resource Files\memory</Filter>
+    <ClInclude Include="..\include\kaballoc\memory\resource.h">
+      <Filter>include\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\memory\memory_common.h">
-      <Filter>Resource Files\memory</Filter>
+    <ClInclude Include="..\include\kaballoc\memory\resource_reference.h">
+      <Filter>include\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\trait\relocatable.h">
-      <Filter>Resource Files\trait</Filter>
+    <ClInclude Include="..\include\kaballoc\memory\detail\over_allocate.h">
+      <Filter>include\memory\detail</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\memory\detail\over_allocate.h">
-      <Filter>Resource Files\memory\detail</Filter>
+    <ClInclude Include="..\include\kaballoc\core\atomic_op.h">
+      <Filter>include\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\container\vector.h">
-      <Filter>Resource Files\container</Filter>
+    <ClInclude Include="..\include\kaballoc\core\compiler.h">
+      <Filter>include\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\container\inl\vector.inl.h">
-      <Filter>Resource Files\container\inl</Filter>
+    <ClInclude Include="..\include\kaballoc\container\array_value.h">
+      <Filter>include\container</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\core\compiler.h">
-      <Filter>Resource Files\core</Filter>
+    <ClInclude Include="..\include\kaballoc\container\vector.h">
+      <Filter>include\container</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\core\atomic_op.h">
-      <Filter>Resource Files\core</Filter>
+    <ClInclude Include="..\include\kaballoc\container\detail\array_value.inl.h">
+      <Filter>include\container\detail</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\container\inl\array_value.inl.h">
-      <Filter>Resource Files\container\inl</Filter>
+    <ClInclude Include="..\include\kaballoc\container\detail\vector.inl.h">
+      <Filter>include\container\detail</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\container\array_value.h">
-      <Filter>Resource Files\container</Filter>
+    <ClInclude Include="..\include\kaballoc\container\decl\vector.h">
+      <Filter>include\container\decl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\kaballoc\trait\relocatable.h">
+      <Filter>include\trait</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

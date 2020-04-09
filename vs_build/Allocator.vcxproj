@@ -18,6 +18,26 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\kaballoc\container\array_value.h" />
+    <ClInclude Include="..\include\kaballoc\container\decl\vector.h" />
+    <ClInclude Include="..\include\kaballoc\container\detail\array_value.inl.h" />
+    <ClInclude Include="..\include\kaballoc\container\detail\vector.inl.h" />
+    <ClInclude Include="..\include\kaballoc\container\vector.h" />
+    <ClInclude Include="..\include\kaballoc\core\atomic_op.h" />
+    <ClInclude Include="..\include\kaballoc\core\compiler.h" />
+    <ClInclude Include="..\include\kaballoc\memory\allocator.h" />
+    <ClInclude Include="..\include\kaballoc\memory\array_resource.h" />
+    <ClInclude Include="..\include\kaballoc\memory\byte_span.h" />
+    <ClInclude Include="..\include\kaballoc\memory\detail\over_allocate.h" />
+    <ClInclude Include="..\include\kaballoc\memory\freelist_resource.h" />
+    <ClInclude Include="..\include\kaballoc\memory\memory_common.h" />
+    <ClInclude Include="..\include\kaballoc\memory\monotonic_resource.h" />
+    <ClInclude Include="..\include\kaballoc\memory\new_resource.h" />
+    <ClInclude Include="..\include\kaballoc\memory\resource.h" />
+    <ClInclude Include="..\include\kaballoc\memory\resource_reference.h" />
+    <ClInclude Include="..\include\kaballoc\trait\relocatable.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{1ED4C384-2863-4E0F-9E4C-E53D10E0E860}</ProjectGuid>
@@ -114,26 +134,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\include\container\array_value.h" />
-    <ClInclude Include="..\include\container\decl\vector.h" />
-    <ClInclude Include="..\include\container\inl\array_value.inl.h" />
-    <ClInclude Include="..\include\container\inl\vector.inl.h" />
-    <ClInclude Include="..\include\container\vector.h" />
-    <ClInclude Include="..\include\core\atomic_op.h" />
-    <ClInclude Include="..\include\core\compiler.h" />
-    <ClInclude Include="..\include\memory\allocator.h" />
-    <ClInclude Include="..\include\memory\array_resource.h" />
-    <ClInclude Include="..\include\memory\byte_span.h" />
-    <ClInclude Include="..\include\memory\detail\over_allocate.h" />
-    <ClInclude Include="..\include\memory\freelist_resource.h" />
-    <ClInclude Include="..\include\memory\memory_common.h" />
-    <ClInclude Include="..\include\memory\monotonic_resource.h" />
-    <ClInclude Include="..\include\memory\new_resource.h" />
-    <ClInclude Include="..\include\memory\resource.h" />
-    <ClInclude Include="..\include\memory\resource_reference.h" />
-    <ClInclude Include="..\include\trait\relocatable.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

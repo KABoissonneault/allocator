@@ -1,7 +1,7 @@
 #pragma once
 
-#include "memory/memory_common.h"
-#include "memory/byte_span.h"
+#include "kaballoc/memory/memory_common.h"
+#include "kaballoc/memory/byte_span.h"
 
 namespace kab
 {

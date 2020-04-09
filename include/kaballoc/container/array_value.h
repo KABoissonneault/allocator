@@ -82,4 +82,4 @@ namespace kab
 	};
 }
 
-#include "container/inl/array_value.inl.h"
+#include "kaballoc/container/detail/array_value.inl.h"

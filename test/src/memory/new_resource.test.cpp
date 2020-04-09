@@ -1,4 +1,4 @@
-#include "memory/new_resource.h"
+#include "kaballoc/memory/new_resource.h"
 
 #include "new.h"
 

@@ -1,5 +1,5 @@
-#include <memory/resource_reference.h>
-#include <memory/freelist_resource.h>
+#include "kaballoc/memory/resource_reference.h"
+#include "kaballoc/memory/freelist_resource.h"
 
 #include <catch.hpp>
 

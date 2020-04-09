@@ -1,6 +1,6 @@
 #pragma once
 
-#include "trait/relocatable.h"
+#include "kaballoc/trait/relocatable.h"
 
 namespace kab
 {
