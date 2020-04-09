@@ -81,5 +81,8 @@
     <ClInclude Include="..\include\kaballoc\trait\relocatable.h">
       <Filter>include\trait</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\kaballoc\container\array_value.decl.h">
+      <Filter>include\container</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

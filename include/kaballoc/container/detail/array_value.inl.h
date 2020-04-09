@@ -128,29 +128,4 @@ namespace kab
 		swap(m_data, rhs.m_data);
 		swap(m_end, rhs.m_end);
 	}
-	
-	template<typename ElementT, typename ResourceT>
-	template<typename SizedRangeT>
-	auto array_value<ElementT, ResourceT>::assign(SizedRangeT && r) -> array_value&
-	{
-		using std::size;
-		using std::begin;
-		using std::end;
-
-		release_control(access_resource(), m_control);
-
-		auto const range_size = size(r);
-		if (range_size == 0)
-		{
-			return *this;
-		}
-
-		m_control = new_control(access_resource(), range_size);
-		m_data = m_control->fam;
-		m_end = m_data + range_size;
-
-		std::uninitialized_copy(begin(r), end(r), m_data);
-
-		return *this;
-	}
 }

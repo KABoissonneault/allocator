@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\kaballoc\container\array_value.decl.h" />
     <ClInclude Include="..\include\kaballoc\container\array_value.h" />
     <ClInclude Include="..\include\kaballoc\container\decl\vector.h" />
     <ClInclude Include="..\include\kaballoc\container\detail\array_value.inl.h" />

@@ -19,11 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\compilation\container\array_value_decl.cpp" />
+    <ClCompile Include="..\..\src\compilation\container\array_value_impl.cpp" />
     <ClCompile Include="..\..\src\compilation\container\vector_decl.cpp" />
     <ClCompile Include="..\..\src\compilation\container\vector_impl.cpp" />
     <ClCompile Include="..\..\src\compilation\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\compilation\container\array_value_decl.h" />
     <ClInclude Include="..\..\src\compilation\container\vector_decl.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

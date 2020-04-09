@@ -27,9 +27,18 @@
     <ClCompile Include="..\..\src\compilation\container\vector_decl.cpp">
       <Filter>Source Files\container</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\compilation\container\array_value_impl.cpp">
+      <Filter>Source Files\container</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\compilation\container\array_value_decl.cpp">
+      <Filter>Source Files\container</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\compilation\container\vector_decl.h">
+      <Filter>Source Files\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\compilation\container\array_value_decl.h">
       <Filter>Source Files\container</Filter>
     </ClInclude>
   </ItemGroup>
