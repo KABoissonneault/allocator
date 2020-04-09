@@ -301,3 +301,16 @@ namespace kab
 
 	};
 }
+
+/**
+ * Macro to declare a specialization of the 'vector' template
+ *
+ * By having a matching KAB_CONTAINER_VECTOR_IMPL in a compiled object, other
+ * translation units are free to use only this declaration without having to import the entire template
+ *
+ * The template signature of 'vector' is not guaranteed, so use this macro rather than making your own declarations
+ */
+#define KAB_CONTAINER_VECTOR_DECL(ElementType, ResourceType) \
+	namespace kab { \
+		extern template class vector<ElementType, ResourceType>; \
+	}

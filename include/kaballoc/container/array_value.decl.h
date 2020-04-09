@@ -113,3 +113,16 @@ namespace kab
 		[[nodiscard]] value_type const& back() const { return *(m_end - 1); }
 	};
 }
+
+/**
+ * Macro to declare a specialization of the 'array_value' template
+ *
+ * By having a matching KAB_CONTAINER_ARRAY_VALUE_IMPL in a compiled object, other
+ * translation units are free to use only this declaration without having to import the entire template
+ *
+ * The template signature of 'array_value' is not guaranteed, so use this macro rather than making your own declarations
+ */
+#define KAB_CONTAINER_ARRAY_VALUE_DECL(ElementType, ResourceType) \
+	namespace kab { \
+		extern template class array_value<ElementType, ResourceType>; \
+	}

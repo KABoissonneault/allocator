@@ -1,7 +1,4 @@
 #include "kaballoc/container/vector.h"
 #include "kaballoc/memory/new_resource.h"
 
-namespace kab
-{
-	template class vector<int, new_resource>;
-}
+KAB_CONTAINER_VECTOR_IMPL(int, kab::new_resource)
