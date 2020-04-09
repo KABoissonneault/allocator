@@ -24,6 +24,8 @@ TEST_CASE("New resource", "[memory]")
 
 		void on_delete(void* ptr, std::size_t size, std::align_val_t alignment) override
 		{
+			(void)ptr;
+			(void)alignment;
 			m_current_alloc -= size;
 		}
 

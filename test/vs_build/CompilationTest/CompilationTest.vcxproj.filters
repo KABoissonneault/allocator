@@ -13,42 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\memory">
-      <UniqueIdentifier>{85f52ade-b309-4137-9969-88968022fb35}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\container">
-      <UniqueIdentifier>{8d11abe3-499b-417c-811d-36b69a45aaf6}</UniqueIdentifier>
+      <UniqueIdentifier>{3f41e184-31c9-453e-8437-034ec2fc4220}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\freelist_resource.test.cpp">
-      <Filter>Source Files\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\memory\new_resource.test.cpp">
-      <Filter>Source Files\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\new.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\container\vector.test.cpp">
+    <ClCompile Include="..\..\src\compilation\container\vector_impl.cpp">
       <Filter>Source Files\container</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\memory\resource_reference.test.cpp">
-      <Filter>Source Files\memory</Filter>
+    <ClCompile Include="..\..\src\compilation\main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\container\array_value.test.cpp">
+    <ClCompile Include="..\..\src\compilation\container\vector_decl.cpp">
       <Filter>Source Files\container</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\test_resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\new.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\compilation\container\vector_decl.h">
+      <Filter>Source Files\container</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

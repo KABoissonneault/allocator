@@ -1,5 +1,9 @@
 #pragma once
 
+#include "memory/detail/over_allocate.h"
+#include <iterator>
+#include <algorithm>
+
 namespace kab
 {
 	template<typename T, typename R>
