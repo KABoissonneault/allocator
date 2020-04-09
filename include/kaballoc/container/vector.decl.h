@@ -1,6 +1,7 @@
 #pragma once
 
 #include "kaballoc/trait/relocatable.h"
+#include <iterator>
 
 namespace kab
 {
@@ -96,7 +97,16 @@ namespace kab
 		 *   - T is constructible from the element type of Range
 		 */
 		template<typename Range>
-		vector& assign(Range&& r);
+		vector& assign(Range&& r)
+		{
+			std::destroy(m_data, m_size);
+			free_storage();
+			m_data = nullptr;
+			m_size = nullptr;
+			m_byte_capacity = 0;
+			insert_back(std::forward<Range>(r));
+			return *this;
+		}
 
 		/**
 		 * Factory function creating a vector using another container, copying its memory resource and copying its element range.
@@ -106,7 +116,12 @@ namespace kab
 		 *   - The element type of Container can construct T
 		 */
 		template<typename Container>
-		[[nodiscard]] static vector from_container(Container const& c);
+		static vector from_container(Container const& c)
+		{
+			vector v(c.get_resource());
+			v.insert_back(c);
+			return v;
+		}
 
 		/**
 		 * Return a pointer to the start of the constructed elements.
@@ -211,7 +226,14 @@ namespace kab
 		 * Requires: 'T' must be constructible from the provided arguments
 		 */
 		template<typename... Args>
-		vector& emplace_back(Args &&... args);
+		vector& emplace_back(Args&&... args)
+		{
+			ensure_capacity(size() + 1);
+			new(m_size) T(std::forward<Args>(args)...);
+			++m_size;
+
+			return *this;
+		}
 
 		/**
 		 * Removes the last element of the vector.
@@ -226,7 +248,20 @@ namespace kab
 		 * Requires: T must be constructible from the element type of Range
 		 */
 		template<typename Range>
-		vector& insert_back(Range&& r);
+		vector& insert_back(Range&& r)
+		{
+			using std::begin;
+			using std::end;
+
+			auto it = begin(r);
+			auto const sent = end(r);
+			// TODO: reserve if 'Range' is a sized range or 'it' is a RandomAccessIterator 
+			for (; it != sent; ++it) {
+				emplace_back(*it);
+			}
+
+			return *this;
+		}
 
 		/**
 		 * Changes the capacity of the vector, without changing the size of the vector

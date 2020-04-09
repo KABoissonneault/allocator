@@ -22,9 +22,6 @@
     <Filter Include="include\container\detail">
       <UniqueIdentifier>{8baa3b16-8097-48a6-8a2d-8f14703aa436}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\container\decl">
-      <UniqueIdentifier>{0090770e-070e-4586-a4d5-a27cabb39b9c}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\kaballoc\memory\allocator.h">
@@ -75,13 +72,13 @@
     <ClInclude Include="..\include\kaballoc\container\detail\vector.inl.h">
       <Filter>include\container\detail</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\kaballoc\container\decl\vector.h">
-      <Filter>include\container\decl</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\kaballoc\trait\relocatable.h">
       <Filter>include\trait</Filter>
     </ClInclude>
     <ClInclude Include="..\include\kaballoc\container\array_value.decl.h">
+      <Filter>include\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\kaballoc\container\vector.decl.h">
       <Filter>include\container</Filter>
     </ClInclude>
   </ItemGroup>

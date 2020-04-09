@@ -102,27 +102,6 @@ namespace kab
 	}
 
 	template<typename T, typename R>
-	template<typename Range>
-	auto vector<T, R>::assign(Range&& r) -> vector&
-	{
-		std::destroy(m_data, m_size);
-		free_storage();
-		m_data = nullptr;
-		m_size = nullptr;
-		m_byte_capacity = 0;
-		insert_back(std::forward<Range>(r));
-	}
-
-	template<typename T, typename R>
-	template<typename Container>
-	auto vector<T, R>::from_container(Container const& c) -> vector
-	{
-		vector v(c.get_resource());
-		v.insert_back(c);
-		return v;
-	}
-
-	template<typename T, typename R>
 	constexpr size_t vector<T, R>::max_capacity() noexcept
 	{ 
 		// TODO: consider 'max_capacity' of the memory resource if available
@@ -172,37 +151,9 @@ namespace kab
 	}
 
 	template<typename T, typename R>
-	template<typename... Args>
-	auto vector<T, R>::emplace_back(Args&&... args) -> vector&
-	{
-		ensure_capacity(size() + 1);
-		new(m_size) T(std::forward<Args>(args)...);
-		++m_size;
-
-		return *this;
-	}
-
-	template<typename T, typename R>
 	auto vector<T, R>::pop_back() -> vector&
 	{
 		std::destroy_at(--m_size);
-		return *this;
-	}
-
-	template<typename T, typename R>
-	template<typename Range>
-	auto vector<T, R>::insert_back(Range&& r) -> vector&
-	{
-		using std::begin;
-		using std::end;
-
-		auto it = begin(r);
-		auto const sent = end(r);
-		// TODO: reserve if 'Range' is a sized range or 'it' is a RandomAccessIterator 
-		for (; it != sent; ++it) {
-			emplace_back(*it);
-		}
-
 		return *this;
 	}
 

@@ -21,9 +21,9 @@
   <ItemGroup>
     <ClInclude Include="..\include\kaballoc\container\array_value.decl.h" />
     <ClInclude Include="..\include\kaballoc\container\array_value.h" />
-    <ClInclude Include="..\include\kaballoc\container\decl\vector.h" />
     <ClInclude Include="..\include\kaballoc\container\detail\array_value.inl.h" />
     <ClInclude Include="..\include\kaballoc\container\detail\vector.inl.h" />
+    <ClInclude Include="..\include\kaballoc\container\vector.decl.h" />
     <ClInclude Include="..\include\kaballoc\container\vector.h" />
     <ClInclude Include="..\include\kaballoc\core\atomic_op.h" />
     <ClInclude Include="..\include\kaballoc\core\compiler.h" />
