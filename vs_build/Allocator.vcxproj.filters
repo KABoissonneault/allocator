@@ -87,6 +87,9 @@
     <ClInclude Include="..\include\kaballoc\container\vector.decl.h">
       <Filter>include\container</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\kaballoc\memory\detail\uninitialized_relocate.h">
+      <Filter>include\memory\detail</Filter>
+    </ClInclude>
     <ClInclude Include="..\include\kaballoc\core\size_t.h">
       <Filter>include\core</Filter>
     </ClInclude>
