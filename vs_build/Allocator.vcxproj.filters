@@ -96,6 +96,9 @@
     <ClInclude Include="..\include\kaballoc\range\detail\begin.h">
       <Filter>include\range\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\kaballoc\range\detail\distance.h">
+      <Filter>include\range\detail</Filter>
+    </ClInclude>
     <ClInclude Include="..\include\kaballoc\range\detail\end.h">
       <Filter>include\range\detail</Filter>
     </ClInclude>
