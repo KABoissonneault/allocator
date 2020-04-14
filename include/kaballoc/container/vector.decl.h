@@ -1,7 +1,10 @@
 #pragma once
 
 #include "kaballoc/trait/relocatable.h"
-#include <iterator>
+#include "kaballoc/memory/detail/destroy.h"
+#include "kaballoc/range/detail/distance.h"
+#include "kaballoc/range/detail/begin.h"
+#include "kaballoc/range/detail/end.h"
 
 namespace kab
 {
@@ -99,7 +102,7 @@ namespace kab
 		template<typename Range>
 		vector& assign(Range&& r)
 		{
-			std::destroy(m_data, m_size);
+			kab::destroy(m_data, m_size);
 			free_storage();
 			m_data = nullptr;
 			m_size = nullptr;
@@ -144,7 +147,7 @@ namespace kab
 		 *
 		 * This represents the number of constructed elements.
 		 */
-		[[nodiscard]] size_t size() const noexcept { return std::distance(m_data, m_size); }
+		[[nodiscard]] size_t size() const noexcept { return range::distance(m_data, m_size); }
 
 		/**
 		 * Returns the capacity of the vector.
@@ -250,11 +253,8 @@ namespace kab
 		template<typename Range>
 		vector& insert_back(Range&& r)
 		{
-			using std::begin;
-			using std::end;
-
-			auto it = begin(r);
-			auto const sent = end(r);
+			auto it = kab::range::begin(r);
+			auto const sent = kab::range::end(r);
 			// TODO: reserve if 'Range' is a sized range or 'it' is a RandomAccessIterator 
 			for (; it != sent; ++it) {
 				emplace_back(*it);

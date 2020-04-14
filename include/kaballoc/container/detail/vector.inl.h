@@ -1,8 +1,9 @@
 #pragma once
 
 #include "kaballoc/memory/detail/over_allocate.h"
-#include <iterator>
-#include <algorithm>
+#include "kaballoc/memory/detail/uninitialized_relocate.h"
+#include "kaballoc/core/comparison.h"
+#include <utility>
 
 namespace kab
 {
@@ -28,20 +29,16 @@ namespace kab
 		byte_span const new_block = detail::over_allocate(access_resource(), new_capacity * sizeof(T), align_v<T>);
 		size_t const current_size = size();
 
-		// Default construct the new objects
-		std::uninitialized_default_construct_n(
-			reinterpret_cast<T*>(new_block.data)
-			, current_size
-		);
+		auto const new_buffer = reinterpret_cast<T*>(new_block.data);
 
 		// Relocate data
-		memcpy(new_block.data, m_data, current_size * sizeof(T));
+		kab::uninitialized_relocate(m_data, m_size, new_buffer);
 
 		// Free the previous storage
 		free_storage();
 
 		// Use the new storage
-		m_data = reinterpret_cast<T*>(new_block.data);
+		m_data = new_buffer;
 		m_size = m_data + current_size;
 		m_byte_capacity = new_block.size;
 	}
@@ -53,7 +50,7 @@ namespace kab
 		if (current_capacity < n)
 		{
 			const size_t new_capacity = get_next_capacity(current_capacity);
-			reallocate(std::max(new_capacity, n));
+			reallocate(kab::max(new_capacity, n));
 		}
 	}
 	
@@ -72,7 +69,7 @@ namespace kab
 	{
 		if (this != &rhs)
 		{
-			std::destroy(m_data, m_size);
+			kab::destroy(m_data, m_size);
 			free_storage();
 
 			access_resource() = std::move(rhs).access_resource();
@@ -87,7 +84,7 @@ namespace kab
 	template<typename T, typename R>
 	vector<T, R>::~vector()
 	{
-		std::destroy(m_data, m_size);
+		kab::destroy(m_data, m_size);
 		free_storage();
 	}
 
@@ -153,7 +150,7 @@ namespace kab
 	template<typename T, typename R>
 	auto vector<T, R>::pop_back() -> vector&
 	{
-		std::destroy_at(--m_size);
+		kab::destroy_at(--m_size);
 		return *this;
 	}
 
@@ -187,21 +184,21 @@ namespace kab
 		}
 		else if (current_size > n) {
 			m_size = data() + n;
-			std::destroy(m_size, m_size + (current_size - n));
+			kab::destroy(m_size, m_size + (current_size - n));
 		}
 	}
 
 	template<typename T, typename R>
 	void vector<T, R>::clear() noexcept
 	{
-		std::destroy(m_data, m_size);
+		kab::destroy(m_data, m_size);
 		m_size = m_data;
 	}
 
 	template<typename T, typename R>
 	void vector<T, R>::clear_and_shrink() noexcept
 	{
-		std::destroy(m_data, m_size);
+		kab::destroy(m_data, m_size);
 		detail::over_deallocate(access_resource(), { reinterpret_cast<byte*>(m_data), m_byte_capacity }, align_v<T>);
 		m_data = nullptr;
 		m_size = nullptr;
