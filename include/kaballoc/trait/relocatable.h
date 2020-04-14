@@ -10,14 +10,14 @@ namespace kab
 	 * Given,
 	 *   - a type T
 	 *   - a variable v1 and v2 of type T
-	 *   - a function relocate(src, dest) which takes a T lvalue and a pointer to arbitrary storage and returns void
+	 *   - a function relocate(src, dest), where 'src' is a pointer to a valid object of type T and 'dest' is a pointer to arbitrary storage appropriate for T
 	 *
 	 *  Relocation is an operation where the lifetime of the object itself is transferred to another location. 
 	 *  This is different from a move operation, which transfers sub-resources of an object to another object, but does not affect lifetime of the object itself.
 	 *  After relocation, the source object must *not* be destroyed. Note: For this reason, relocation is not appropriate for automatic or static lifetime variables.
-	 *  Pointers, references, iterators, and other similar reference-types are all invalidated 
+	 *  Pointers, references, iterators, and other similar reference-types to the source object are all invalidated 
 	 *
-	 *  The type T is trivially relocatable if 'relocate' can be implemented as memcpy(dest, src).
+	 *  The type T is trivially relocatable if 'relocate' can be implemented as memcpy(dest, src, sizeof(T)).
 	 *  Even a non-trivially copyable type, like a string or a vector, can often be trivially relocated. 
 	 */
 	template<typename T>
