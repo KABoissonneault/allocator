@@ -10,6 +10,9 @@
     <Filter Include="src\container">
       <UniqueIdentifier>{1430d3f8-94d5-4ff0-92b0-ca0aba438b5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\core">
+      <UniqueIdentifier>{b8eb76b8-e2f1-4217-8e52-b3d5b57f5e75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\test_resource.h">
@@ -43,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\memory\resource.test.cpp">
       <Filter>src\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\core\comparison.test.cpp">
+      <Filter>src\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

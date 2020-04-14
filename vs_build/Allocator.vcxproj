@@ -26,6 +26,7 @@
     <ClInclude Include="..\include\kaballoc\container\vector.decl.h" />
     <ClInclude Include="..\include\kaballoc\container\vector.h" />
     <ClInclude Include="..\include\kaballoc\core\atomic_op.h" />
+    <ClInclude Include="..\include\kaballoc\core\comparison.h" />
     <ClInclude Include="..\include\kaballoc\core\compiler.h" />
     <ClInclude Include="..\include\kaballoc\core\ptrdiff_t.h" />
     <ClInclude Include="..\include\kaballoc\core\size_t.h" />

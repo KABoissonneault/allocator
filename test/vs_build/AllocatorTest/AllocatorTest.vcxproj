@@ -25,6 +25,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\container\array_value.test.cpp" />
     <ClCompile Include="..\..\src\container\vector.test.cpp" />
+    <ClCompile Include="..\..\src\core\comparison.test.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\memory\freelist_resource.test.cpp" />
     <ClCompile Include="..\..\src\memory\new_resource.test.cpp" />

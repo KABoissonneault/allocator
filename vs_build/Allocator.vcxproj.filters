@@ -87,5 +87,8 @@
     <ClInclude Include="..\include\kaballoc\core\ptrdiff_t.h">
       <Filter>include\core</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\kaballoc\core\comparison.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
