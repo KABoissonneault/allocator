@@ -41,6 +41,8 @@
     <ClInclude Include="..\include\kaballoc\memory\new_resource.h" />
     <ClInclude Include="..\include\kaballoc\memory\resource.h" />
     <ClInclude Include="..\include\kaballoc\memory\resource_reference.h" />
+    <ClInclude Include="..\include\kaballoc\range\detail\begin.h" />
+    <ClInclude Include="..\include\kaballoc\range\detail\end.h" />
     <ClInclude Include="..\include\kaballoc\trait\relocatable.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

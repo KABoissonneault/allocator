@@ -22,6 +22,12 @@
     <Filter Include="include\container\detail">
       <UniqueIdentifier>{8baa3b16-8097-48a6-8a2d-8f14703aa436}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\range">
+      <UniqueIdentifier>{1ae87905-e5b1-4c04-9be6-cdc1caa95b9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\range\detail">
+      <UniqueIdentifier>{c06e7905-b7d4-45c3-ba57-ad597bc193f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\kaballoc\memory\allocator.h">
@@ -86,6 +92,12 @@
     </ClInclude>
     <ClInclude Include="..\include\kaballoc\core\ptrdiff_t.h">
       <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\kaballoc\range\detail\begin.h">
+      <Filter>include\range\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\kaballoc\range\detail\end.h">
+      <Filter>include\range\detail</Filter>
     </ClInclude>
     <ClInclude Include="..\include\kaballoc\memory\detail\destroy.h">
       <Filter>include\memory\detail</Filter>
