@@ -39,12 +39,12 @@ TEST_CASE("New resource", "[memory]")
 	set_new_observer(tester);
 
 	kab::new_resource resource;
-	kab::byte_span const s = resource.allocate(16, kab::max_align_v);
+	kab::byte_span const s = resource.allocate(16, kab::default_align_v);
 	REQUIRE(tester.get_last_alloc() == 16);
-	REQUIRE(tester.get_last_alignment() == kab::max_align_v);
+	REQUIRE(tester.get_last_alignment() == kab::default_align_v);
 	REQUIRE(tester.get_current_alloc() == 16);
 	REQUIRE(tester.get_total_alloc() == 16);
 
-	resource.deallocate(s, kab::max_align_v);
+	resource.deallocate(s, kab::default_align_v);
 	REQUIRE(tester.get_current_alloc() == 0);
 }

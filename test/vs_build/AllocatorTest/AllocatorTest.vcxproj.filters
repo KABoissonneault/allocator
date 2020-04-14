@@ -41,5 +41,8 @@
     <ClCompile Include="..\..\src\container\vector.test.cpp">
       <Filter>src\container</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\memory\resource.test.cpp">
+      <Filter>src\memory</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

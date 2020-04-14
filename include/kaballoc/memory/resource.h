@@ -42,7 +42,7 @@ namespace kab
 	}
 
 	// The biggest natural alignment. Any alignment value above this is considered "over-alignment"
-	inline constexpr align_t max_align_v{ alignof(long double) };
+	inline constexpr align_t default_align_v{ alignof(long double) };
 
 	inline constexpr bool is_power_of_two(size_t n) noexcept
 	{

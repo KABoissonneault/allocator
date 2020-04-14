@@ -28,6 +28,7 @@
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\memory\freelist_resource.test.cpp" />
     <ClCompile Include="..\..\src\memory\new_resource.test.cpp" />
+    <ClCompile Include="..\..\src\memory\resource.test.cpp" />
     <ClCompile Include="..\..\src\memory\resource_reference.test.cpp" />
     <ClCompile Include="..\..\src\new.cpp" />
   </ItemGroup>
