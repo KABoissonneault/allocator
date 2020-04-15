@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\src\compilation\container\vector_decl.cpp" />
     <ClCompile Include="..\..\src\compilation\container\vector_impl.cpp" />
     <ClCompile Include="..\..\src\compilation\main.cpp" />
+    <ClCompile Include="..\..\src\compilation\trait\relocatable.cmp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\compilation\container\array_value_decl.h" />

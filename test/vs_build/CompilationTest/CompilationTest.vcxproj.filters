@@ -16,6 +16,9 @@
     <Filter Include="Source Files\container">
       <UniqueIdentifier>{3f41e184-31c9-453e-8437-034ec2fc4220}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\trait">
+      <UniqueIdentifier>{097d53bf-457a-474b-b856-612da7fe2d3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\compilation\container\vector_impl.cpp">
@@ -32,6 +35,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\compilation\container\array_value_decl.cpp">
       <Filter>Source Files\container</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\compilation\trait\relocatable.cmp.cpp">
+      <Filter>Source Files\trait</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
