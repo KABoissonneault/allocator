@@ -2,6 +2,8 @@
 
 #include <type_traits>
 
+#include "kaballoc/core/compiler.h"
+
 namespace kab
 {
 	/**
@@ -28,7 +30,9 @@ namespace kab
 	template<> struct is_trivially_relocatable<char> : std::true_type {};
 	template<> struct is_trivially_relocatable<unsigned char> : std::true_type {};
 	template<> struct is_trivially_relocatable<signed char> : std::true_type {};
+#if !KAB_COMPILER_MSVC || defined(_NATIVE_WCHAR_T_DEFINED) // on MSVC, wchar_t might not be a fundamental type
 	template<> struct is_trivially_relocatable<wchar_t> : std::true_type {};
+#endif
 	template<> struct is_trivially_relocatable<char16_t> : std::true_type {};
 	template<> struct is_trivially_relocatable<char32_t> : std::true_type {};
 	// template<> struct is_trivially_relocatable<char8_t> : std::true_type {}; // c++20
