@@ -24,6 +24,10 @@
     <ClCompile Include="..\..\src\compilation\container\vector_decl.cpp" />
     <ClCompile Include="..\..\src\compilation\container\vector_impl.cpp" />
     <ClCompile Include="..\..\src\compilation\main.cpp" />
+    <ClCompile Include="..\..\src\compilation\std\shared_ptr.cmp.cpp" />
+    <ClCompile Include="..\..\src\compilation\std\tuple.cmp.cpp" />
+    <ClCompile Include="..\..\src\compilation\std\unique_ptr.cmp.cpp" />
+    <ClCompile Include="..\..\src\compilation\std\variant.cmp.cpp" />
     <ClCompile Include="..\..\src\compilation\trait\relocatable.cmp.cpp" />
   </ItemGroup>
   <ItemGroup>

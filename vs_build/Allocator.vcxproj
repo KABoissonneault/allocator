@@ -45,6 +45,10 @@
     <ClInclude Include="..\include\kaballoc\range\detail\begin.h" />
     <ClInclude Include="..\include\kaballoc\range\detail\distance.h" />
     <ClInclude Include="..\include\kaballoc\range\detail\end.h" />
+    <ClInclude Include="..\include\kaballoc\std\shared_ptr.h" />
+    <ClInclude Include="..\include\kaballoc\std\tuple.h" />
+    <ClInclude Include="..\include\kaballoc\std\unique_ptr.h" />
+    <ClInclude Include="..\include\kaballoc\std\variant.h" />
     <ClInclude Include="..\include\kaballoc\trait\relocatable.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

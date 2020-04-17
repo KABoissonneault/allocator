@@ -28,6 +28,9 @@
     <Filter Include="include\range\detail">
       <UniqueIdentifier>{c06e7905-b7d4-45c3-ba57-ad597bc193f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\std">
+      <UniqueIdentifier>{8043db1d-35c3-4a51-9ac6-e1653bfd601a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\kaballoc\memory\allocator.h">
@@ -110,6 +113,18 @@
     </ClInclude>
     <ClInclude Include="..\include\kaballoc\core\comparison.h">
       <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\kaballoc\std\variant.h">
+      <Filter>include\std</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\kaballoc\std\unique_ptr.h">
+      <Filter>include\std</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\kaballoc\std\shared_ptr.h">
+      <Filter>include\std</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\kaballoc\std\tuple.h">
+      <Filter>include\std</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

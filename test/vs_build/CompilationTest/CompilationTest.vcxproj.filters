@@ -19,6 +19,9 @@
     <Filter Include="Source Files\trait">
       <UniqueIdentifier>{097d53bf-457a-474b-b856-612da7fe2d3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\std">
+      <UniqueIdentifier>{beb09d04-a9d7-467a-aac9-629adfa114e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\compilation\container\vector_impl.cpp">
@@ -38,6 +41,18 @@
     </ClCompile>
     <ClCompile Include="..\..\src\compilation\trait\relocatable.cmp.cpp">
       <Filter>Source Files\trait</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\compilation\std\variant.cmp.cpp">
+      <Filter>Source Files\std</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\compilation\std\unique_ptr.cmp.cpp">
+      <Filter>Source Files\std</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\compilation\std\shared_ptr.cmp.cpp">
+      <Filter>Source Files\std</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\compilation\std\tuple.cmp.cpp">
+      <Filter>Source Files\std</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
