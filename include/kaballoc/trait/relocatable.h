@@ -23,7 +23,12 @@ namespace kab
 	 *  Even a non-trivially copyable type, like a string or a vector, can often be trivially relocated. 
 	 */
 	template<typename T>
-	struct is_trivially_relocatable : std::false_type {};
+	struct is_trivially_relocatable : 
+		std::bool_constant<
+			std::is_trivially_copyable_v<T>
+			&& std::is_trivially_destructible_v<T>
+		> 
+	{};
 
 	// Fundamental specializations
 	template<> struct is_trivially_relocatable<decltype(nullptr)> : std::true_type {};

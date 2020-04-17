@@ -37,3 +37,6 @@ static_assert(kab::is_trivially_relocatable_v<foo::B2>);
 static_assert(kab::is_trivially_relocatable_v<C2<int>>);
 static_assert(kab::is_trivially_relocatable_v<D2<int, int>>);
 static_assert(kab::is_trivially_relocatable_v<bar::E2<int, float, double>>);
+
+enum class EnumFoo {};
+static_assert(kab::is_trivially_relocatable_v<EnumFoo>);
