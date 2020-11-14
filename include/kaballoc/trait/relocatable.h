@@ -40,7 +40,7 @@ namespace kab
 #endif
 	template<> struct is_trivially_relocatable<char16_t> : std::true_type {};
 	template<> struct is_trivially_relocatable<char32_t> : std::true_type {};
-	// template<> struct is_trivially_relocatable<char8_t> : std::true_type {}; // c++20
+	template<> struct is_trivially_relocatable<char8_t> : std::true_type {};
 	template<> struct is_trivially_relocatable<signed short> : std::true_type {};
 	template<> struct is_trivially_relocatable<unsigned short> : std::true_type {};
 	template<> struct is_trivially_relocatable<signed int> : std::true_type {};
