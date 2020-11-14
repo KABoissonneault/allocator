@@ -13,6 +13,9 @@
     <Filter Include="src\core">
       <UniqueIdentifier>{b8eb76b8-e2f1-4217-8e52-b3d5b57f5e75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\range">
+      <UniqueIdentifier>{081e652e-0c62-4fbd-a458-87fed6a937d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\test_resource.h">
@@ -49,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\core\comparison.test.cpp">
       <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\range\move_view.cpp">
+      <Filter>src\range</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -123,5 +123,8 @@
     <ClInclude Include="..\include\kaballoc\memory\malloc_resource.h">
       <Filter>include\memory</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\kaballoc\range\move_view.h">
+      <Filter>include\range</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
