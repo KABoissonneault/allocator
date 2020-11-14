@@ -120,5 +120,8 @@
     <ClInclude Include="..\include\kaballoc\std\tuple.h">
       <Filter>include\std</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\kaballoc\memory\malloc_resource.h">
+      <Filter>include\memory</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -22,6 +22,9 @@
     <Filter Include="Source Files\std">
       <UniqueIdentifier>{beb09d04-a9d7-467a-aac9-629adfa114e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\memory">
+      <UniqueIdentifier>{39ba4729-9a3c-4ed6-8210-de755159de89}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\compilation\container\vector_impl.cpp">
@@ -53,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\compilation\std\tuple.cmp.cpp">
       <Filter>Source Files\std</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\compilation\memory\malloc_resource.cmp.cpp">
+      <Filter>Source Files\memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -35,6 +35,7 @@
     <ClInclude Include="..\include\kaballoc\memory\detail\over_allocate.h" />
     <ClInclude Include="..\include\kaballoc\memory\detail\uninitialized_relocate.h" />
     <ClInclude Include="..\include\kaballoc\memory\freelist_resource.h" />
+    <ClInclude Include="..\include\kaballoc\memory\malloc_resource.h" />
     <ClInclude Include="..\include\kaballoc\memory\memory_common.h" />
     <ClInclude Include="..\include\kaballoc\memory\monotonic_resource.h" />
     <ClInclude Include="..\include\kaballoc\memory\new_resource.h" />
