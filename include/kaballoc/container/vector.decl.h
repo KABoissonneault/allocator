@@ -178,14 +178,16 @@ namespace kab
 		 *
 		 * Precondition: The size must be at least 1
 		 */
-		[[nodiscard]] T& front() { return *m_data; }
+		[[nodiscard]] T & front() { return *m_data; }
+		[[nodiscard]] T const& front() const { return *m_data; }
 
 		/**
 		 * Returns a reference to the last element of the vector.
 		 *
 		 * Precondition: The size must be at least 1
 		 */
-		[[nodiscard]] T& back() { return *(m_size - 1); }
+		[[nodiscard]] T & back() { return *(m_size - 1); }
+		[[nodiscard]] T const& back() const { return *(m_size - 1); }
 
 		/**
 		 * Operator[]. Accesses elements of the vector using a zero-based index, returning a reference to the specified element.
