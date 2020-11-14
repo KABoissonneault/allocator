@@ -33,12 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\kaballoc\memory\allocator.h">
-      <Filter>include\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\kaballoc\memory\array_resource.h">
-      <Filter>include\memory</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\kaballoc\memory\byte_span.h">
       <Filter>include\memory</Filter>
     </ClInclude>

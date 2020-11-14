@@ -30,8 +30,6 @@
     <ClInclude Include="..\include\kaballoc\core\compiler.h" />
     <ClInclude Include="..\include\kaballoc\core\ptrdiff_t.h" />
     <ClInclude Include="..\include\kaballoc\core\size_t.h" />
-    <ClInclude Include="..\include\kaballoc\memory\allocator.h" />
-    <ClInclude Include="..\include\kaballoc\memory\array_resource.h" />
     <ClInclude Include="..\include\kaballoc\memory\byte_span.h" />
     <ClInclude Include="..\include\kaballoc\memory\detail\destroy.h" />
     <ClInclude Include="..\include\kaballoc\memory\detail\over_allocate.h" />

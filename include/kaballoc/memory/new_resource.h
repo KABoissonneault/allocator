@@ -1,6 +1,5 @@
 #pragma once
 
-#include "kaballoc/memory/byte_span.h"
 #include "kaballoc/memory/resource.h"
 
 #include <new>
