@@ -1,5 +1,4 @@
-#if !defined(KAB_CORE_ATOMIC_OP_HEADER)
-#define KAB_CORE_ATOMIC_OP_HEADER
+#pragma once
 
 #include "kaballoc/core/compiler.h"
 
@@ -21,5 +20,3 @@
 #else
 #  error "Atomics not supported on this compiler"
 #endif
-
-#endif // KAB_CORE_ATOMIC_OP_HEADER
