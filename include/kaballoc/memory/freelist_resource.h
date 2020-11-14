@@ -4,6 +4,7 @@
 #include "kaballoc/memory/byte_span.h"
 
 #include <type_traits>
+#include <utility>
 
 namespace kab
 {
