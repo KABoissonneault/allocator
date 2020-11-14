@@ -35,7 +35,6 @@ namespace kab
 		T* m_size = nullptr; // end of the "size"
 		size_t m_byte_capacity = 0;
 
-		[[nodiscard]] static constexpr size_t get_next_capacity(size_t current) noexcept;
 		void free_storage() noexcept;
 		void reallocate(size_t new_capacity);
 		void ensure_capacity(size_t n);
@@ -202,28 +201,28 @@ namespace kab
 		 *
 		 * Requires: T is DefaultConstructible
 		 */
-		vector& push_back();
+		T & push_back();
 
 		/**
 		 * Constructs 'n' new default-initialized elements at the back of the vector
 		 *
 		 * Requires: T is DefaultConstructible
 		 */
-		vector& push_back_n(size_t n);
+		void push_back_n(size_t n);
 
 		/**
 		 * Constructs a new element at the back of the vector by copying the provided argument
 		 *
 		 * Requires: T is CopyConstructible
 		 */
-		vector& push_back(T const& e);
+		T & push_back(T const& e);
 
 		/**
 		 * Constructs a new element at the back of the vector by moving the provided argument
 		 *
 		 * Requires: T must be MoveConstructible
 		 */
-		vector& push_back(T && e);
+		T & push_back(T && e);
 
 		/**
 		 * Constructs a new element at the back of the vector from the provided arguments
@@ -231,13 +230,13 @@ namespace kab
 		 * Requires: 'T' must be constructible from the provided arguments
 		 */
 		template<typename... Args>
-		vector& emplace_back(Args&&... args)
+		T & emplace_back(Args&&... args)
 		{
 			ensure_capacity(size() + 1);
-			new(m_size) T(std::forward<Args>(args)...);
+			T* ptr = new(m_size) T(std::forward<Args>(args)...);
 			++m_size;
 
-			return *this;
+			return *ptr;
 		}
 
 		/**
@@ -245,7 +244,7 @@ namespace kab
 		 *
 		 * Precondition: The size of the vector must be at least 1
 		 */
-		vector& pop_back();
+		void pop_back();
 
 		/**
 		 * Inserts an entire Range at the back of the vector
@@ -253,7 +252,7 @@ namespace kab
 		 * Requires: T must be constructible from the element type of Range
 		 */
 		template<typename Range>
-		vector& insert_back(Range&& r)
+		void insert_back(Range&& r)
 		{
 			auto it = kab::range::begin(r);
 			auto const sent = kab::range::end(r);
@@ -261,8 +260,6 @@ namespace kab
 			for (; it != sent; ++it) {
 				emplace_back(*it);
 			}
-
-			return *this;
 		}
 
 		/**
