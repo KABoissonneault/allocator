@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.489
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30709.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Allocator", "..\..\vs_build\Allocator.vcxproj", "{1ED4C384-2863-4E0F-9E4C-E53D10E0E860}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AllocatorTest", "AllocatorTest\AllocatorTest.vcxproj", "{AF3A34CB-E3D5-4C23-95FF-94ED8F5B016A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CompilationTest", "CompilationTest\CompilationTest.vcxproj", "{C1471392-26E5-400C-AFC2-732B60E3D727}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AllocatorBenchmark", "AllocatorBenchmark\AllocatorBenchmark.vcxproj", "{4603C10B-07D7-445D-AE30-CACFDFF93FEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,14 @@ Global
 		{C1471392-26E5-400C-AFC2-732B60E3D727}.Release|x64.Build.0 = Release|x64
 		{C1471392-26E5-400C-AFC2-732B60E3D727}.Release|x86.ActiveCfg = Release|Win32
 		{C1471392-26E5-400C-AFC2-732B60E3D727}.Release|x86.Build.0 = Release|Win32
+		{4603C10B-07D7-445D-AE30-CACFDFF93FEF}.Debug|x64.ActiveCfg = Debug|x64
+		{4603C10B-07D7-445D-AE30-CACFDFF93FEF}.Debug|x64.Build.0 = Debug|x64
+		{4603C10B-07D7-445D-AE30-CACFDFF93FEF}.Debug|x86.ActiveCfg = Debug|Win32
+		{4603C10B-07D7-445D-AE30-CACFDFF93FEF}.Debug|x86.Build.0 = Debug|Win32
+		{4603C10B-07D7-445D-AE30-CACFDFF93FEF}.Release|x64.ActiveCfg = Release|x64
+		{4603C10B-07D7-445D-AE30-CACFDFF93FEF}.Release|x64.Build.0 = Release|x64
+		{4603C10B-07D7-445D-AE30-CACFDFF93FEF}.Release|x86.ActiveCfg = Release|Win32
+		{4603C10B-07D7-445D-AE30-CACFDFF93FEF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
